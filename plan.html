@@ -1,0 +1,3298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>企业规划书 · 可填写版 v5.2</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,wght@0,400;0,700;0,900&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* 黑白蓝紫 主配色 */
+    --bg:#0b0b14;              /* 深空黑底 */
+    --bg-soft:#13131f;
+    --paper:#ffffff;           /* 纸白 */
+    --paper-2:#f5f6fb;
+    --ink:#0b0b14;             /* 黑墨 */
+    --ink-2:#3a3a4d;
+    --ink-3:#7a7a90;
+    --line:#e4e6f0;
+    --line-2:#c8cbdd;
+
+    --blue:#1f3bff;            /* 电光蓝 */
+    --blue-2:#5b76ff;
+    --blue-soft:#e8ecff;
+    --purple:#7b2cff;          /* 亮紫 */
+    --purple-2:#a974ff;
+    --purple-soft:#f1e8ff;
+    --gradient:linear-gradient(135deg,#1f3bff 0%,#7b2cff 100%);
+    --gradient-soft:linear-gradient(135deg,#e8ecff 0%,#f1e8ff 100%);
+
+    --ok:#1f3bff;
+    --bad:#d11f5a;
+    --warn:#ff8a00;
+
+    --fill:#fff8b3;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans SC",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  body{
+    background:
+      radial-gradient(circle at 8% -5%, rgba(123,44,255,.25) 0%, transparent 38%),
+      radial-gradient(circle at 105% 10%, rgba(31,59,255,.25) 0%, transparent 40%),
+      radial-gradient(circle at 100% 105%, rgba(123,44,255,.18) 0%, transparent 35%),
+      var(--bg);
+    background-attachment:fixed;
+    min-height:100vh;
+  }
+
+  /* ===== 顶部工具栏（固定） ===== */
+  .topbar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,11,20,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:12px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  }
+  .topbar .brand{font-family:"Bebas Neue",sans-serif;font-size:20px;letter-spacing:4px;color:#fff;margin-right:auto;display:flex;align-items:center;gap:10px}
+  .topbar .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--gradient);box-shadow:0 0 12px var(--purple)}
+  .btn{cursor:pointer;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);padding:8px 16px;font-size:13px;border-radius:999px;font-family:inherit;transition:.2s;color:#fff;font-weight:500;letter-spacing:.5px}
+  .btn:hover{border-color:var(--purple-2);background:rgba(123,44,255,.18);transform:translateY(-1px)}
+  .btn.primary{background:var(--gradient);border-color:transparent;color:#fff;font-weight:700;box-shadow:0 4px 18px rgba(123,44,255,.4)}
+  .btn.primary:hover{box-shadow:0 8px 26px rgba(123,44,255,.6)}
+
+  /* ===== 页面容器：每页 A4 ===== */
+  .pages{max-width:1140px;margin:0 auto;padding:28px 20px 80px}
+  .page{
+    background:var(--paper);
+    border-radius:22px;
+    padding:52px 56px 60px;
+    margin-bottom:32px;
+    box-shadow:0 24px 70px rgba(0,0,0,.5), 0 2px 0 rgba(255,255,255,.08) inset;
+    position:relative;
+    min-height:1180px;
+    overflow:hidden;
+  }
+  .page::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--gradient);
+  }
+  .page-num{
+    position:absolute;top:22px;right:34px;
+    font-family:"Bebas Neue",sans-serif;font-size:14px;letter-spacing:3px;color:var(--ink-3);
+  }
+  .page-num b{color:var(--purple);font-size:22px;letter-spacing:1px;margin-right:4px;vertical-align:-2px}
+
+  /* ===== 封面（第 1 页） ===== */
+  .cover{
+    min-height:1180px;
+    background:var(--ink);
+    color:#fff;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:70px 64px;
+    position:relative;overflow:hidden;
+  }
+  .cover::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(circle at 15% 15%, rgba(123,44,255,.45) 0%, transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(31,59,255,.5) 0%, transparent 45%);
+  }
+  .cover > *{position:relative;z-index:1}
+  .cover .top{display:flex;justify-content:space-between;align-items:flex-start}
+  .cover .label{font-family:"Bebas Neue";font-size:14px;letter-spacing:6px;color:var(--purple-2)}
+  .cover .v{font-family:"Space Grotesk";font-size:13px;letter-spacing:2px;color:rgba(255,255,255,.5)}
+  .cover h1{
+    font-family:"Fraunces",serif;font-weight:900;font-size:120px;line-height:.92;letter-spacing:-3px;margin:0;
+    background:linear-gradient(135deg,#fff 0%,#a974ff 60%,#5b76ff 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .cover .sub-title{font-family:"Bebas Neue";font-size:28px;letter-spacing:10px;margin-top:14px;color:rgba(255,255,255,.8)}
+  .cover .desc{max-width:520px;font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);margin-top:28px}
+  .cover-basic{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:26px 30px;backdrop-filter:blur(10px)}
+  .cover-basic h3{margin:0 0 18px;font-family:"Bebas Neue";font-size:13px;letter-spacing:4px;color:var(--purple-2);font-weight:400}
+  .cover-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 28px}
+  .cover-grid label{font-size:10.5px;color:rgba(255,255,255,.45);display:block;margin-bottom:4px;letter-spacing:2px;text-transform:uppercase}
+  .cover-grid input{width:100%;border:none;border-bottom:1.5px solid rgba(255,255,255,.2);background:transparent;font-size:16px;padding:6px 0;font-family:"Space Grotesk",inherit;color:#fff;outline:none;transition:.2s;font-weight:500}
+  .cover-grid input::placeholder{color:rgba(255,255,255,.25)}
+  .cover-grid input:focus{border-bottom-color:var(--purple-2)}
+  .cover .footer-cover{display:flex;justify-content:space-between;color:rgba(255,255,255,.4);font-size:12px;font-family:"Space Grotesk";letter-spacing:2px;margin-top:40px}
+
+  /* ===== Section 头 ===== */
+  .sec-head{display:flex;align-items:flex-start;gap:18px;margin:0 0 8px;padding-bottom:18px;border-bottom:2px solid var(--ink)}
+  .sec-head .num{
+    font-family:"Bebas Neue",sans-serif;font-size:68px;line-height:.85;letter-spacing:2px;
+    background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+    min-width:84px;font-weight:400;
+  }
+  .sec-head .titles .en{font-family:"Bebas Neue",sans-serif;font-size:13px;letter-spacing:5px;color:var(--purple);font-weight:400}
+  .sec-head .titles h2{font-family:"Fraunces",serif;font-weight:900;font-size:36px;margin:4px 0 0;letter-spacing:-1px;color:var(--ink);line-height:1.1}
+  .sub{color:var(--ink-2);font-size:13.5px;margin:18px 0 18px;line-height:1.7}
+  .sub b{color:var(--ink);font-weight:700}
+
+  /* ===== 分节标题 ===== */
+  .sub-h{margin:24px 0 10px;font-size:12px;letter-spacing:3.5px;font-family:"Bebas Neue",sans-serif;font-weight:400;display:flex;align-items:center;gap:12px;color:var(--ink)}
+  .sub-h .n{font-family:"Space Grotesk";font-weight:700;font-size:13px;color:#fff;background:var(--gradient);padding:3px 10px;border-radius:6px;letter-spacing:1px}
+  .sub-h .line{flex:1;height:1.5px;background:linear-gradient(90deg,var(--ink) 0%,transparent 100%)}
+
+  /* ===== 表格 ===== */
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--paper);border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;font-size:13px;box-shadow:0 2px 0 var(--ink)}
+  thead th{
+    background:var(--ink);
+    color:#fff;text-align:left;padding:13px 14px;
+    font-weight:700;letter-spacing:1.5px;font-size:11px;font-family:"Bebas Neue",sans-serif;
+    border-right:1px solid rgba(255,255,255,.1);
+    text-transform:uppercase;
+  }
+  thead th:last-child{border-right:none}
+  tbody td{padding:4px;border-top:1px solid var(--line);border-right:1px solid var(--line);vertical-align:top;background:#fff}
+  tbody td:last-child{border-right:none}
+  tbody tr:first-child td{border-top:none}
+  tbody tr:nth-child(even) td{background:var(--paper-2)}
+
+  /* 可编辑单元格 */
+  [contenteditable="true"]{
+    display:block;width:100%;min-height:32px;padding:7px 10px;border-radius:5px;font-size:13.5px;color:var(--ink);
+    outline:none;transition:.15s;line-height:1.5;word-break:break-word;font-weight:500;
+  }
+  [contenteditable="true"]:hover{background:var(--fill)}
+  [contenteditable="true"]:focus{background:#fff;box-shadow:inset 0 0 0 2px var(--blue)}
+  [contenteditable="true"]:empty::before{content:attr(data-ph);color:var(--ink-3);font-weight:400;font-size:12.5px;opacity:.7}
+
+  .num-cell{text-align:right;font-variant-numeric:tabular-nums;font-family:"Space Grotesk",sans-serif;font-size:16px;letter-spacing:-.3px;font-weight:700;color:var(--ink)}
+  .auto{background:var(--blue-soft) !important;color:var(--blue) !important;font-weight:900 !important;cursor:not-allowed;font-family:"Space Grotesk" !important}
+  .auto::before{display:none !important}
+
+  tfoot td{
+    background:var(--ink);color:#fff;
+    padding:14px;font-weight:900;font-family:"Space Grotesk";font-size:18px;letter-spacing:.3px;
+  }
+  tfoot td:first-child,
+  tfoot td:not(.num-cell){font-family:"Bebas Neue";font-size:13px;letter-spacing:3px;color:var(--purple-2);font-weight:400}
+  tfoot .num-cell{color:#fff}
+
+  .row-action{width:54px;text-align:center}
+  .del-btn{cursor:pointer;border:none;background:transparent;color:var(--ink-3);font-size:15px;line-height:1;transition:.15s;width:26px;height:26px;border-radius:50%}
+  .del-btn:hover{color:#fff;background:var(--bad)}
+  .add-row{margin-top:14px;display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:1.5px dashed var(--line-2);background:transparent;padding:9px 18px;border-radius:10px;font-size:13px;font-family:inherit;color:var(--ink-2);transition:.15s;font-weight:600;letter-spacing:.5px}
+  .add-row:hover{border-color:var(--purple);color:var(--purple);background:var(--purple-soft)}
+
+  /* ===== 打包方式选择 ===== */
+  .choice{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+  .choice label{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:22px 22px 20px;cursor:pointer;display:block;transition:.2s;position:relative}
+  .choice label:hover{border-color:var(--purple-2);transform:translateY(-2px);box-shadow:0 10px 24px rgba(123,44,255,.1)}
+  .choice input{display:none}
+  .choice label:has(input:checked){border-color:var(--purple);background:var(--gradient-soft);box-shadow:0 8px 22px rgba(123,44,255,.18)}
+  .choice label:has(input:checked) .ci{color:var(--purple)}
+  .choice .ci{font-family:"Bebas Neue";font-size:26px;letter-spacing:1.5px;display:block;margin-bottom:8px;color:var(--ink);font-weight:400}
+  .choice .cd{font-size:12.5px;color:var(--ink-2);line-height:1.65}
+
+  /* ===== Dashboard 卡片 ===== */
+  .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+  .summary .s{
+    background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:22px 24px;
+    position:relative;transition:.2s;overflow:hidden;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .summary .s:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--purple)}
+  .summary .s small{font-size:10.5px;color:var(--ink-3);letter-spacing:2.5px;font-family:"Bebas Neue";font-weight:400;display:block;margin-bottom:8px;text-transform:uppercase}
+  .summary .s b{display:block;font-family:"Space Grotesk";font-weight:700;font-size:34px;color:var(--ink);line-height:1.1;letter-spacing:-1px}
+  .summary .s b.good{color:var(--blue)}
+  .summary .s b.bad{color:var(--bad)}
+  .summary .s .hint{font-size:11px;color:var(--ink-3);margin-top:8px;font-weight:500}
+  .summary .s.highlight{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--purple)}
+  .summary .s.highlight small{color:var(--purple-2)}
+  .summary .s.highlight b{color:#fff;background:linear-gradient(135deg,#fff 0%,#a974ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .summary .s.highlight .hint{color:rgba(255,255,255,.55)}
+
+  /* ===== Tip ===== */
+  .tip{background:var(--gradient-soft);border-left:4px solid var(--purple);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--ink-2);margin-top:14px;line-height:1.7}
+  .tip b{color:var(--purple);font-weight:700}
+
+  /* ===== 分页指示（屏幕显示用） ===== */
+  .page-divider{
+    display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 30px;
+    color:rgba(255,255,255,.35);font-family:"Bebas Neue";letter-spacing:4px;font-size:12px;
+  }
+  .page-divider .dash{flex:1;max-width:120px;height:1px;background:rgba(255,255,255,.15)}
+
+  /* ===== 打印：真·分页 ===== */
+  @media print{
+    @page{size:A4;margin:12mm 10mm}
+    .topbar,.add-row,.del-btn,.row-action,.page-divider{display:none !important}
+    body{background:#fff !important}
+    body::before,body::after{display:none}
+    .pages{padding:0;margin:0;max-width:none}
+    .page{
+      box-shadow:none !important;border-radius:0;
+      margin:0;padding:18mm 16mm 14mm;
+      page-break-after:always;break-after:page;
+      min-height:auto;
+    }
+    .page:last-child{page-break-after:auto}
+    .page::before{position:static;height:4px;margin-bottom:14mm}
+    .cover{min-height:auto;page-break-after:always;break-after:page}
+    section{page-break-inside:avoid;break-inside:avoid}
+    table{page-break-inside:auto}
+    tr{page-break-inside:avoid;break-inside:avoid}
+    [contenteditable="true"]{background:#fff !important;box-shadow:none !important}
+    .auto{background:#f3f4fb !important;color:#1f3bff !important}
+    .summary .s{box-shadow:none !important}
+    .summary .s.highlight{background:#0b0b14 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  }
+
+  @media (max-width:900px){
+    .page{padding:36px 24px}
+    .cover{padding:44px 28px}
+    .cover h1{font-size:72px}
+    .cover-grid{grid-template-columns:1fr 1fr}
+    .summary{grid-template-columns:1fr 1fr}
+    .choice{grid-template-columns:1fr}
+    .sec-head .num{font-size:44px;min-width:60px}
+    .sec-head .titles h2{font-size:26px}
+  }
+
+  /* ========== v5 · 左侧导航 + 图形分析 ========== */
+  .shell{display:grid;grid-template-columns:220px 1fr;gap:0;align-items:flex-start}
+  .sidenav{
+    position:sticky;top:64px;align-self:flex-start;
+    padding:20px 14px 20px 20px;max-height:calc(100vh - 80px);overflow-y:auto;
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .sidenav::-webkit-scrollbar{width:6px}
+  .sidenav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:3px}
+  .sidenav .nav-title{
+    font-family:"Bebas Neue";letter-spacing:3px;font-size:11px;
+    color:rgba(255,255,255,.5);padding:8px 8px 10px;display:flex;align-items:center;gap:8px;
+  }
+  .sidenav .nav-title::before{content:"";width:3px;height:12px;background:var(--gradient);border-radius:2px}
+  .sidenav a{
+    display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;
+    color:rgba(255,255,255,.65);text-decoration:none;font-size:12.5px;font-weight:500;
+    letter-spacing:.3px;transition:.15s;cursor:pointer;border:1px solid transparent;
+  }
+  .sidenav a:hover{background:rgba(255,255,255,.05);color:#fff}
+  .sidenav a.active{background:rgba(123,44,255,.15);color:#fff;border-color:rgba(123,44,255,.4);font-weight:700}
+  .sidenav a .step{
+    font-family:"Space Grotesk";font-weight:700;font-size:10.5px;
+    min-width:28px;text-align:center;padding:2px 6px;border-radius:4px;
+    background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);
+  }
+  .sidenav a.active .step{background:var(--gradient);color:#fff}
+
+  .nav-kpis{
+    margin-top:16px;padding:14px 12px;border-radius:12px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .nav-kpis .kpi-title{
+    font-family:"Bebas Neue";letter-spacing:3px;font-size:11px;color:rgba(255,255,255,.5);
+    display:flex;align-items:center;gap:8px;margin-bottom:4px;
+  }
+  .nav-kpis .kpi-title::before{content:"";width:3px;height:10px;background:var(--gradient);border-radius:2px}
+  .nav-kpi{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .nav-kpi .lbl{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.5px}
+  .nav-kpi .val{font-family:"Space Grotesk";font-weight:700;font-size:13.5px;color:#fff;font-variant-numeric:tabular-nums}
+  .nav-kpi .val.good{color:#a974ff}
+  .nav-kpi .val.bad{color:#ff6b9a}
+  .nav-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+  .nav-bar > i{display:block;height:100%;background:var(--gradient);border-radius:3px;transition:width .4s}
+
+  .pages-wrap{min-width:0}
+  @media (max-width:1100px){
+    .shell{grid-template-columns:1fr}
+    .sidenav{display:none}
+  }
+
+  /* ===== 图形卡片 通用容器 ===== */
+  .viz-card{
+    background:var(--paper);border:1.5px solid var(--ink);border-radius:16px;padding:20px 22px;
+    box-shadow:4px 4px 0 var(--ink);margin-top:18px;
+  }
+  .viz-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px}
+  .viz-head .t{font-family:"Bebas Neue";letter-spacing:3px;font-size:13px;color:var(--ink);display:flex;align-items:center;gap:10px}
+  .viz-head .t::before{content:"";width:4px;height:14px;background:var(--gradient);border-radius:2px}
+  .viz-head .sub{font-size:11px;color:var(--ink-3);letter-spacing:.5px}
+
+  /* ===== 横向条形图（STEP1/STEP5.3 通用） ===== */
+  .hbars{display:flex;flex-direction:column;gap:8px}
+  .hbar{display:grid;grid-template-columns:140px 1fr 92px;gap:10px;align-items:center;font-size:12.5px}
+  .hbar .nm{color:var(--ink);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hbar .track{position:relative;height:12px;border-radius:4px;background:var(--paper-2);border:1px solid var(--line);overflow:hidden}
+  .hbar .fill{height:100%;border-radius:3px;background:var(--gradient);box-shadow:0 0 0 1px rgba(123,44,255,.15) inset;transition:width .4s}
+  .hbar .fill.neg{background:linear-gradient(135deg,#d11f5a,#ff6b9a)}
+  .hbar .val{font-family:"Space Grotesk";font-weight:700;text-align:right;color:var(--ink);font-variant-numeric:tabular-nums;font-size:13px}
+  .hbar .val.good{color:var(--blue)}
+  .hbar .val.bad{color:var(--bad)}
+
+  /* ===== 双柱对比（STEP4） ===== */
+  .dual-bars{display:flex;flex-direction:column;gap:12px}
+  .dual-row{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center}
+  .dual-row .pn{font-size:12.5px;color:var(--ink);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dual-group{display:flex;flex-direction:column;gap:4px}
+  .dual-line{display:grid;grid-template-columns:46px 1fr 84px;gap:8px;align-items:center;font-size:11px}
+  .dual-line .tag{
+    font-family:"Bebas Neue";font-size:10.5px;letter-spacing:2px;padding:2px 6px;border-radius:4px;
+    text-align:center;
+  }
+  .tag-whole{background:var(--blue-soft);color:var(--blue)}
+  .tag-single{background:var(--purple-soft);color:var(--purple)}
+  .dual-line .tbar{height:10px;border-radius:3px;background:var(--paper-2);border:1px solid var(--line);overflow:hidden;position:relative}
+  .dual-line .tbar > i{display:block;height:100%;border-radius:2px;transition:width .4s}
+  .dual-line .tbar > i.whole{background:linear-gradient(90deg,#1f3bff,#5b76ff)}
+  .dual-line .tbar > i.single{background:linear-gradient(90deg,#7b2cff,#a974ff)}
+  .dual-line .vv{font-family:"Space Grotesk";font-weight:700;text-align:right;color:var(--ink);font-size:12px;font-variant-numeric:tabular-nums}
+  .dual-delta{
+    display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding:10px 14px;
+    border-radius:10px;background:var(--gradient-soft);border:1px dashed var(--purple);font-size:12px;color:var(--ink-2);
+  }
+  .dual-delta b{font-family:"Space Grotesk";font-size:17px;font-weight:700;color:var(--purple);letter-spacing:-.3px}
+
+  /* ===== SVG 环形图 ===== */
+  .donut-wrap{display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:center}
+  .donut{position:relative;width:160px;height:160px}
+  .donut svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .donut .center{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    padding:0 14px;
+  }
+  .donut .center .n{font-family:"Space Grotesk";font-weight:700;font-size:22px;color:var(--ink);letter-spacing:-.8px;line-height:1;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .donut .center .l{font-family:"Bebas Neue";letter-spacing:2px;font-size:10px;color:var(--ink-3);margin-top:4px}
+  .donut-legend{display:flex;flex-direction:column;gap:6px}
+  .dl-row{display:grid;grid-template-columns:12px 1fr auto auto;gap:8px;align-items:center;font-size:12px}
+  .dl-row .sw{width:12px;height:12px;border-radius:3px}
+  .dl-row .nm{color:var(--ink-2)}
+  .dl-row .pct{font-family:"Space Grotesk";font-weight:700;color:var(--ink);font-size:12px;min-width:42px;text-align:right}
+  .dl-row .vl{font-family:"Space Grotesk";font-weight:500;color:var(--ink-3);font-size:11px;min-width:72px;text-align:right}
+
+  /* ===== 封面总览环（第1页右侧小图）===== */
+  .cover-viz{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;
+    padding:22px 26px;backdrop-filter:blur(10px);margin-top:16px;
+    display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;
+  }
+  .cover-viz .donut .center .n{color:#fff;font-size:20px}
+  .cover-viz .donut .center .l{color:rgba(255,255,255,.5)}
+  .cover-viz .cv-kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+  .cover-viz .ck{display:flex;flex-direction:column;gap:2px}
+  .cover-viz .ck .l{font-family:"Bebas Neue";letter-spacing:2px;font-size:9.5px;color:rgba(255,255,255,.5)}
+  .cover-viz .ck .v{font-family:"Space Grotesk";font-weight:700;font-size:16px;color:#fff;letter-spacing:-.5px}
+  .cover-viz .ck .v.good{background:linear-gradient(135deg,#a974ff,#5b76ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+  /* ===== Dashboard 新布局（主图 + KPI 网格 + 保本线）===== */
+  .dash-layout{display:grid;grid-template-columns:1.1fr 1.6fr;gap:18px;align-items:stretch;margin-top:18px}
+  .dash-left,.dash-right{background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:22px 24px;box-shadow:4px 4px 0 var(--ink)}
+  .dash-left{display:flex;flex-direction:column;gap:14px}
+  .dash-left .dh{font-family:"Bebas Neue";font-size:13px;letter-spacing:3px;color:var(--ink);display:flex;align-items:center;gap:10px}
+  .dash-left .dh::before{content:"";width:4px;height:14px;background:var(--gradient);border-radius:2px}
+  .dash-left .donut{margin:0 auto}
+  .dash-right{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;grid-auto-rows:1fr}
+  .dash-kpi{
+    border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;
+    background:#fff;transition:.15s;
+  }
+  .dash-kpi:hover{border-color:var(--purple);transform:translate(-1px,-1px);box-shadow:2px 2px 0 var(--purple)}
+  .dash-kpi small{font-family:"Bebas Neue";letter-spacing:2.5px;font-size:10px;color:var(--ink-3)}
+  .dash-kpi b{font-family:"Space Grotesk";font-weight:700;font-size:22px;letter-spacing:-.8px;color:var(--ink);line-height:1.1;margin-top:2px}
+  .dash-kpi b.good{color:var(--blue)}
+  .dash-kpi b.bad{color:var(--bad)}
+  .dash-kpi .hint{font-size:10.5px;color:var(--ink-3);margin-top:2px}
+  .dash-kpi.hl{background:var(--ink);color:#fff;border-color:var(--ink);grid-column:span 3}
+  .dash-kpi.hl small{color:var(--purple-2)}
+  .dash-kpi.hl b{background:linear-gradient(135deg,#fff,#a974ff 60%,#5b76ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:32px}
+  .dash-kpi.hl .hint{color:rgba(255,255,255,.55)}
+
+  .breakeven{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--paper-2);border:1.5px solid var(--line)}
+  .breakeven .bh{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px;color:var(--ink-2);margin-bottom:8px}
+  .breakeven .bh b{font-family:"Space Grotesk";font-size:15px;color:var(--ink);font-weight:700}
+  .breakeven .btrack{position:relative;height:14px;border-radius:5px;background:#fff;border:1px solid var(--line);overflow:hidden}
+  .breakeven .bfill{
+    position:absolute;left:0;top:0;bottom:0;border-radius:4px;
+    background:var(--gradient);transition:width .5s;
+  }
+  .breakeven .bmark{
+    position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);
+  }
+  .breakeven .bmark::after{
+    content:attr(data-label);position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+    font-family:"Bebas Neue";font-size:9.5px;letter-spacing:1.5px;color:var(--ink);white-space:nowrap;
+  }
+  .breakeven .tags{display:flex;gap:10px;margin-top:8px;font-size:10.5px;color:var(--ink-3)}
+  .breakeven .tags span{display:inline-flex;align-items:center;gap:5px}
+  .breakeven .tags i{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+  /* ===== 打印适配：图形也要能印 ===== */
+  @media print{
+    .shell{display:block}
+    .sidenav{display:none}
+    .viz-card,.dash-left,.dash-right,.breakeven{box-shadow:none !important}
+    .nav-kpis,.sidenav a{display:none !important}
+  }
+
+  /* ========== v5.1 · 字体显著强化 + 新图形 ========== */
+  /* 全局字号上调 —— 保留中文阅读重量感 */
+  html,body{font-size:16px;line-height:1.7;font-weight:500}
+  .sub{font-size:15.5px;line-height:1.8;font-weight:500}
+  .sub b{font-weight:900}
+  .tip{font-size:14.5px;line-height:1.85;font-weight:500;padding:16px 20px}
+  .tip b{font-weight:900;letter-spacing:.3px}
+  .sub-h{font-size:14px;letter-spacing:3.5px;font-weight:700;margin:28px 0 12px}
+  .sub-h .n{font-size:14px;padding:4px 12px}
+
+  /* 表头 / 表体字号 */
+  thead th{font-size:12.5px;letter-spacing:1.8px;padding:14px 14px}
+  tbody td{font-size:14px}
+  [contenteditable="true"]{font-size:14.5px;font-weight:600;min-height:36px;padding:8px 11px}
+  [contenteditable="true"]:empty::before{font-size:13.5px}
+  .num-cell{font-size:17.5px;font-weight:800;letter-spacing:-.3px}
+  tfoot td{font-size:19px;padding:15px 14px}
+  tfoot td:first-child,
+  tfoot td:not(.num-cell){font-size:14px;letter-spacing:3.5px}
+
+  /* Section 标题 */
+  .sec-head .num{font-size:78px}
+  .sec-head .titles .en{font-size:14.5px;letter-spacing:5.5px;font-weight:700}
+  .sec-head .titles h2{font-size:42px;letter-spacing:-1.2px}
+
+  /* 封面 */
+  .cover h1{font-size:132px;letter-spacing:-4px}
+  .cover .sub-title{font-size:32px;letter-spacing:12px}
+  .cover .desc{font-size:16.5px;line-height:1.9}
+  .cover-grid label{font-size:11.5px;letter-spacing:2.2px;font-weight:700}
+  .cover-grid input{font-size:17px;font-weight:700}
+  .cover-basic h3{font-size:14px;letter-spacing:4.5px;font-weight:700}
+  .cover-viz .ck .l{font-size:10.5px;letter-spacing:2.3px;font-weight:700}
+  .cover-viz .ck .v{font-size:19px;font-weight:800}
+  .cover-viz .donut .center .n{font-size:22px;font-weight:800}
+  .cover-viz .donut .center .l{font-size:10.5px;letter-spacing:2.5px;font-weight:700}
+
+  /* 图形卡 */
+  .viz-head .t{font-size:14.5px;letter-spacing:3.2px;font-weight:700}
+  .viz-head .sub{font-size:12px;font-weight:600}
+  .hbar{grid-template-columns:160px 1fr 108px;font-size:13.5px}
+  .hbar .nm{font-size:14px;font-weight:700}
+  .hbar .val{font-size:15px;font-weight:800}
+  .hbar .track{height:14px}
+  .dual-row{grid-template-columns:140px 1fr}
+  .dual-row .pn{font-size:14px;font-weight:800}
+  .dual-line{grid-template-columns:52px 1fr 100px;font-size:12.5px}
+  .dual-line .tag{font-size:11.5px;letter-spacing:2.2px;font-weight:700;padding:3px 8px}
+  .dual-line .tbar{height:12px}
+  .dual-line .vv{font-size:13.5px;font-weight:800}
+  .dual-delta{font-size:13.5px;padding:12px 16px;font-weight:600}
+  .dual-delta b{font-size:17px;font-weight:800}
+
+  /* Dashboard KPI 数字更有冲击力 */
+  .dash-kpi small{font-size:11px;letter-spacing:2.8px;font-weight:700}
+  .dash-kpi b{font-size:28px;font-weight:900;letter-spacing:-1px}
+  .dash-kpi .hint{font-size:11.5px;font-weight:600}
+  .dash-kpi.hl b{font-size:40px;letter-spacing:-1.5px}
+  .dash-left .dh{font-size:14.5px;letter-spacing:3.2px;font-weight:700}
+  .donut .center .n{font-size:23px;font-weight:900;letter-spacing:-.8px}
+  .donut .center .l{font-size:10.5px;letter-spacing:2.5px;font-weight:700;margin-top:5px}
+  .dl-row{font-size:13px}
+  .dl-row .nm{font-weight:600}
+  .dl-row .pct{font-size:13px;font-weight:800;min-width:46px}
+  .dl-row .vl{font-size:12.5px;font-weight:700;min-width:82px}
+
+  /* 侧栏数字 */
+  .sidenav .nav-title{font-size:12px;letter-spacing:3.5px;font-weight:700}
+  .sidenav a{font-size:13.5px;font-weight:600;padding:10px 11px}
+  .sidenav a .step{font-size:11.5px;font-weight:800;min-width:30px}
+  .nav-kpis .kpi-title{font-size:12px;letter-spacing:3.2px;font-weight:700}
+  .nav-kpi .lbl{font-size:12px;font-weight:600}
+  .nav-kpi .val{font-size:15px;font-weight:800}
+
+  /* 保本条 */
+  .breakeven .bh{font-size:13px;font-weight:600}
+  .breakeven .bh b{font-size:17px;font-weight:900}
+  .breakeven .tags{font-size:12px;font-weight:600}
+  .breakeven .bmark::after{font-size:11px;letter-spacing:2px;font-weight:700}
+
+  /* 选择卡 */
+  .choice .ci{font-size:30px;letter-spacing:2px;font-weight:700}
+  .choice .cd{font-size:13.5px;line-height:1.75;font-weight:500}
+
+  /* 按钮 */
+  .btn{font-size:13.5px;font-weight:700;padding:9px 18px;letter-spacing:1px}
+  .btn.primary{font-weight:900}
+  .topbar .brand{font-size:22px;letter-spacing:5px;font-weight:700}
+  .add-row{font-size:13.5px;font-weight:800;padding:10px 20px}
+  .page-num{font-size:15px;letter-spacing:3.5px}
+  .page-num b{font-size:26px;font-weight:700}
+
+  /* ========== 新增：一次性投入瀑布条（STEP 5.1 之后） ========== */
+  .stack-bar{
+    margin-top:14px;display:flex;width:100%;height:52px;border-radius:12px;overflow:hidden;
+    border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  }
+  .stack-seg{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-family:"Space Grotesk",sans-serif;font-weight:900;font-size:14px;
+    letter-spacing:-.3px;transition:.3s;overflow:hidden;white-space:nowrap;
+  }
+  .stack-seg:hover{filter:brightness(1.1)}
+  .stack-seg .tip-in{
+    position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(-8px);
+    background:var(--ink);color:#fff;padding:6px 10px;border-radius:6px;
+    font-size:12px;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;
+    transition:.15s;z-index:5;letter-spacing:.3px;
+  }
+  .stack-seg:hover .tip-in{opacity:1;transform:translateX(-50%) translateY(-12px)}
+  .stack-legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:12px;font-size:12.5px;color:var(--ink-2);font-weight:600}
+  .stack-legend .sl{display:inline-flex;align-items:center;gap:7px}
+  .stack-legend .sl i{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .stack-legend .sl b{font-family:"Space Grotesk";font-weight:800;color:var(--ink);font-size:13px;letter-spacing:-.3px}
+
+  /* ========== 新增：成本→毛利→净利 瀑布图（Dashboard 末尾） ========== */
+  .waterfall{margin-top:28px;padding:22px 24px 26px;border:2px solid var(--ink);border-radius:16px;background:var(--paper);box-shadow:4px 4px 0 var(--ink);overflow:hidden}
+  .waterfall .wh{
+    font-family:"Bebas Neue";font-size:14.5px;letter-spacing:3.2px;color:var(--ink);
+    display:flex;align-items:center;gap:10px;margin:0 0 14px;font-weight:700;
+  }
+  .waterfall .wh::before{content:"";width:4px;height:14px;background:var(--gradient);border-radius:2px}
+  .wf-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:end;height:220px;padding:38px 4px 48px;position:relative;border-bottom:2px solid var(--ink);margin-top:4px}
+  .wf-col{position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+  .wf-bar{
+    width:80%;max-width:110px;border-radius:10px 10px 0 0;position:relative;
+    box-shadow:3px 3px 0 var(--ink);border:2px solid var(--ink);border-bottom:none;
+    transition:height .5s ease-out;min-height:4px;
+  }
+  .wf-bar.rev{background:linear-gradient(180deg,#a974ff,#7b2cff)}
+  .wf-bar.cost{background:linear-gradient(180deg,#ff6b9a,#d11f5a)}
+  .wf-bar.gross{background:linear-gradient(180deg,#5b76ff,#1f3bff)}
+  .wf-bar.fixed{background:linear-gradient(180deg,#ff8a00,#d11f5a)}
+  .wf-bar.net{background:linear-gradient(180deg,#1f3bff,#7b2cff)}
+  .wf-bar.net.neg{background:linear-gradient(180deg,#d11f5a,#0b0b14)}
+  .wf-col .wf-val{
+    position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+    font-family:"Space Grotesk";font-weight:900;font-size:14.5px;
+    color:var(--ink);letter-spacing:-.3px;white-space:nowrap;
+    padding:2px 6px;background:var(--paper);border-radius:4px;line-height:1.2;
+    z-index:2;
+  }
+  .wf-col .wf-val.neg{color:var(--bad)}
+  .wf-col .wf-lab{
+    position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);
+    font-family:"Bebas Neue";font-size:11.5px;
+    letter-spacing:2.5px;color:var(--ink-2);font-weight:700;white-space:nowrap;line-height:1.2;
+  }
+  .wf-col .wf-sub{
+    position:absolute;top:calc(100% + 24px);left:50%;transform:translateX(-50%);
+    font-size:11px;color:var(--ink-3);font-weight:600;white-space:nowrap;line-height:1.2;
+  }
+  .wf-arrow{
+    position:absolute;top:50%;right:-8px;transform:translateY(-50%);z-index:2;
+    font-family:"Bebas Neue";font-size:18px;color:var(--ink-3);font-weight:700;
+  }
+  .wf-note{
+    margin-top:28px;padding:12px 16px;border-radius:10px;background:var(--gradient-soft);
+    border-left:4px solid var(--purple);font-size:13px;color:var(--ink-2);line-height:1.7;font-weight:600;
+  }
+  .wf-note b{color:var(--purple);font-weight:900;font-size:14.5px}
+
+  /* 保本条与瀑布图之间留清晰分隔 */
+  .breakeven + .waterfall{margin-top:22px}
+
+  /* ========== 新增：月度经营漏斗（STEP5 末尾） ========== */
+  .funnel{margin-top:14px;display:flex;flex-direction:column;gap:3px;align-items:center}
+  .funnel-step{
+    width:100%;padding:14px 20px;color:#fff;border-radius:6px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    box-shadow:2px 2px 0 var(--ink);transition:.2s;
+  }
+  .funnel-step:hover{transform:translateX(-2px)}
+  .funnel-step .fl{font-family:"Bebas Neue";font-size:13px;letter-spacing:3px;font-weight:700;opacity:.85}
+  .funnel-step .fv{font-family:"Space Grotesk";font-weight:900;font-size:22px;letter-spacing:-.6px}
+  .funnel-step .fh{font-size:12px;font-weight:600;opacity:.7}
+  .funnel-drop{
+    font-family:"Bebas Neue";font-size:11.5px;letter-spacing:2px;color:var(--ink-3);
+    padding:2px 10px;background:var(--paper-2);border-radius:10px;font-weight:700;
+  }
+
+  @media (max-width:900px){
+    .cover h1{font-size:80px}
+    .sec-head .num{font-size:52px}
+    .sec-head .titles h2{font-size:30px}
+    .wf-grid{height:160px;padding:34px 4px 46px}
+    .wf-col .wf-val{font-size:12.5px;padding:2px 5px}
+    .wf-col .wf-lab{font-size:10.5px;letter-spacing:2px}
+    .wf-col .wf-sub{font-size:10px}
+    .dash-kpi b{font-size:24px}
+    .dash-kpi.hl b{font-size:32px}
+  }
+  @media print{
+    .stack-bar,.waterfall,.funnel-step{box-shadow:none !important}
+    .stack-seg .tip-in{display:none !important}
+  }
+
+  /* ========== v5.2 · 市场分析 & 数据总览 ========== */
+  /* ---- 市场分析：SWOT 四象限 ---- */
+  .mkt-swot{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px;
+    margin-top:14px;
+  }
+  .swot-cell{
+    position:relative; border:2px solid var(--ink); border-radius:14px;
+    padding:18px 18px 16px; background:var(--paper);
+    min-height:130px; box-shadow:4px 4px 0 var(--ink);
+  }
+  .swot-cell.s{background:linear-gradient(135deg,#eef1ff 0%,#fff 60%)}
+  .swot-cell.w{background:linear-gradient(135deg,#fff0f6 0%,#fff 60%)}
+  .swot-cell.o{background:linear-gradient(135deg,#f3ecff 0%,#fff 60%)}
+  .swot-cell.t{background:linear-gradient(135deg,#fff3e6 0%,#fff 60%)}
+  .swot-cell .tag{
+    position:absolute; top:-12px; left:14px;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:4px 12px; border:2px solid var(--ink); border-radius:999px;
+    background:var(--ink); color:#fff;
+    font-family:'Bebas Neue',sans-serif; letter-spacing:3px;
+    font-size:13px; font-weight:700;
+  }
+  .swot-cell.s .tag{background:#1f3bff}
+  .swot-cell.w .tag{background:#d11f5a}
+  .swot-cell.o .tag{background:#7b2cff}
+  .swot-cell.t .tag{background:#ff8a00}
+  .swot-cell .tag i{font-family:'Fraunces',serif;font-style:normal;font-weight:900;letter-spacing:0;font-size:15px}
+  .swot-cell .hint{
+    color:var(--ink-3); font-size:12px; font-weight:600; letter-spacing:.5px;
+    margin-bottom:8px; text-transform:uppercase;
+  }
+  .swot-cell [contenteditable]{
+    min-height:62px; font-size:14.5px; line-height:1.6; font-weight:500;
+    color:var(--ink); outline:none;
+  }
+  .swot-cell [contenteditable]:empty::before{
+    content: attr(data-ph); color:var(--ink-3); font-weight:500;
+  }
+
+  /* ---- TAM / SAM / SOM 嵌套气泡 ---- */
+  .tam-wrap{
+    display:grid; grid-template-columns: 1.1fr 1fr; gap:26px;
+    align-items:center; margin-top:14px;
+  }
+  .tam-bubbles{
+    position:relative; aspect-ratio:1/1; max-width:340px;
+    margin:0 auto;
+  }
+  .tam-bubbles .bb{
+    position:absolute; border-radius:50%;
+    display:grid; place-items:center; text-align:center;
+    border:2.5px solid var(--ink);
+    box-shadow:5px 5px 0 var(--ink);
+    transition:transform .25s;
+  }
+  .tam-bubbles .bb:hover{transform:scale(1.03)}
+  .tam-bubbles .bb.tam{
+    inset:0; background:linear-gradient(135deg,#1f3bff 0%,#7b2cff 100%);
+    color:#fff;
+  }
+  .tam-bubbles .bb.sam{
+    inset:14% 14% 14% 14%; background:linear-gradient(135deg,#7b2cff 0%,#a974ff 100%);
+    color:#fff;
+  }
+  .tam-bubbles .bb.som{
+    inset:34% 34% 34% 34%; background:linear-gradient(135deg,#ff6b9a 0%,#ff8a00 100%);
+    color:#fff;
+  }
+  .tam-bubbles .bb .k{
+    font-family:'Bebas Neue',sans-serif; letter-spacing:4px;
+    font-size:14px; opacity:.85;
+  }
+  .tam-bubbles .bb .v{
+    font-family:'Space Grotesk',sans-serif; font-weight:900;
+    font-size:22px; margin-top:2px; letter-spacing:-.5px;
+  }
+  .tam-bubbles .bb.tam .v{font-size:17px;margin-top:38%}
+  .tam-bubbles .bb.sam .v{font-size:18px;margin-top:30%}
+  .tam-bubbles .bb.som .v{font-size:22px}
+  .tam-desc{
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .tam-desc .row{
+    display:grid; grid-template-columns: 62px 1fr; gap:14px; align-items:start;
+    padding:12px 14px; border:2px solid var(--line-2); border-radius:12px;
+    background:var(--paper);
+  }
+  .tam-desc .row .lbl{
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bebas Neue',sans-serif; letter-spacing:3px;
+    font-size:15px; font-weight:700; color:#fff;
+    border-radius:8px; padding:6px 4px;
+  }
+  .tam-desc .row.tam .lbl{background:linear-gradient(135deg,#1f3bff,#7b2cff)}
+  .tam-desc .row.sam .lbl{background:linear-gradient(135deg,#7b2cff,#a974ff)}
+  .tam-desc .row.som .lbl{background:linear-gradient(135deg,#ff6b9a,#ff8a00)}
+  .tam-desc .row .body .t{font-weight:800;font-size:14.5px;color:var(--ink);margin-bottom:4px;letter-spacing:.3px}
+  .tam-desc .row .body .d{font-size:13px;color:var(--ink-2);font-weight:500;line-height:1.55}
+  .tam-desc .row .body b{font-family:'Space Grotesk',sans-serif;color:var(--ink);font-weight:900}
+
+  /* ---- 用户画像卡 ---- */
+  .persona{
+    display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px;
+    margin-top:14px;
+  }
+  .persona-card{
+    position:relative; padding:18px 16px 14px;
+    border:2px solid var(--ink); border-radius:14px;
+    background:var(--paper); box-shadow:4px 4px 0 var(--ink);
+  }
+  .persona-card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:8px;
+    border-radius:12px 12px 0 0;
+  }
+  .persona-card.p1::before{background:linear-gradient(90deg,#1f3bff,#7b2cff)}
+  .persona-card.p2::before{background:linear-gradient(90deg,#7b2cff,#ff6b9a)}
+  .persona-card.p3::before{background:linear-gradient(90deg,#ff8a00,#ff6b9a)}
+  .persona-card .avatar{
+    width:44px; height:44px; border-radius:50%;
+    display:grid; place-items:center;
+    font-family:'Fraunces',serif; font-weight:900; font-size:20px;
+    color:#fff; margin-bottom:10px;
+    border:2px solid var(--ink);
+  }
+  .persona-card.p1 .avatar{background:linear-gradient(135deg,#1f3bff,#7b2cff)}
+  .persona-card.p2 .avatar{background:linear-gradient(135deg,#7b2cff,#ff6b9a)}
+  .persona-card.p3 .avatar{background:linear-gradient(135deg,#ff8a00,#ff6b9a)}
+  .persona-card h4{
+    font-family:'Fraunces',serif; font-weight:900;
+    font-size:20px; letter-spacing:-.3px; margin-bottom:10px; color:var(--ink);
+  }
+  .persona-card .meta{
+    font-family:'Bebas Neue',sans-serif; letter-spacing:2px;
+    color:var(--ink-3); font-size:11.5px; margin-bottom:4px; font-weight:700;
+  }
+  .persona-card [contenteditable]{
+    min-height:28px; font-size:13.5px; line-height:1.55; font-weight:500;
+    color:var(--ink); outline:none; margin-bottom:8px;
+  }
+  .persona-card [contenteditable]:empty::before{
+    content:attr(data-ph); color:var(--ink-3); font-weight:500;
+  }
+
+  /* ---- 竞品对比表打分条 ---- */
+  #t-comp td[data-score] .score-bar{
+    display:flex; align-items:center; gap:8px;
+  }
+  #t-comp td[data-score] .score-num{
+    font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:15px;
+    min-width:28px; color:var(--ink);
+  }
+  #t-comp td[data-score] .score-track{
+    flex:1; height:10px; background:var(--line); border:1.5px solid var(--ink); border-radius:999px; overflow:hidden; position:relative;
+  }
+  #t-comp td[data-score] .score-fill{
+    height:100%; background:linear-gradient(90deg,#1f3bff,#7b2cff);
+    transition:width .3s;
+  }
+  #t-comp tbody tr.me{ background:linear-gradient(180deg,#fff 0%, #f3ecff 100%) !important }
+  #t-comp tbody tr.me td{ font-weight:700 }
+  #t-comp tbody tr.me td:first-child::before{ content:"▶ "; color:var(--purple); font-weight:900 }
+
+  /* ---- 数据总览大卡 ---- */
+  .ov-hero{
+    margin-top:14px;
+    padding:28px 30px; border:3px solid var(--ink); border-radius:18px;
+    background:linear-gradient(135deg,#0b0b14 0%,#1a1a2e 60%,#3a1f5c 100%);
+    color:#fff; box-shadow:6px 6px 0 var(--ink);
+    display:grid; grid-template-columns: 1.1fr 1fr; gap:30px; align-items:center;
+  }
+  .ov-hero .label{
+    font-family:'Bebas Neue',sans-serif; letter-spacing:7px;
+    font-size:15px; color:#a974ff; font-weight:700; margin-bottom:10px;
+  }
+  .ov-hero h3{
+    font-family:'Fraunces',serif; font-weight:900;
+    font-size:42px; letter-spacing:-1px; line-height:1.1; margin-bottom:14px;
+  }
+  .ov-hero .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .ov-hero .tag-row .tg{
+    padding:6px 12px; border-radius:999px;
+    background:rgba(255,255,255,.1); font-size:12px; font-weight:700;
+    letter-spacing:1.5px; border:1px solid rgba(255,255,255,.2);
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .ov-hero .tag-row .tg.ok{background:rgba(31,59,255,.3);border-color:rgba(31,59,255,.6)}
+  .ov-hero .tag-row .tg.warn{background:rgba(255,138,0,.3);border-color:rgba(255,138,0,.6)}
+  .ov-hero .tag-row .tg.bad{background:rgba(209,31,90,.3);border-color:rgba(209,31,90,.6)}
+
+  /* 健康度分数环 */
+  .ov-gauge{position:relative;aspect-ratio:1/1;max-width:230px;margin:0 auto}
+  .ov-gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ov-gauge .center{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:4px; transform:rotate(0);
+  }
+  .ov-gauge .center .score{
+    font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:54px;
+    color:#fff; letter-spacing:-2px; line-height:1;
+  }
+  .ov-gauge .center .score small{font-size:22px;color:#a974ff;margin-left:2px}
+  .ov-gauge .center .g-label{
+    font-family:'Bebas Neue',sans-serif; letter-spacing:4px;
+    font-size:12px; color:#a974ff; font-weight:700;
+  }
+  .ov-gauge .center .grade{
+    font-family:'Fraunces',serif; font-weight:900; font-size:18px;
+    margin-top:2px;
+  }
+
+  /* 指标矩阵（13 卡） */
+  .ov-matrix{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;
+    margin-top:18px;
+  }
+  .ov-kpi{
+    position:relative; padding:14px 14px 12px;
+    border:2px solid var(--ink); border-radius:12px;
+    background:var(--paper); box-shadow:3px 3px 0 var(--ink);
+  }
+  .ov-kpi::before{
+    content:""; position:absolute; left:-2px; top:14px; width:4px; height:22px;
+    background:var(--gradient); border-radius:2px;
+  }
+  .ov-kpi .k{
+    font-family:'Bebas Neue',sans-serif; letter-spacing:2.5px;
+    font-size:11.5px; color:var(--ink-3); font-weight:700;
+  }
+  .ov-kpi .sub-k{
+    font-size:11.5px; color:var(--ink-3); font-weight:600; margin-top:1px;
+  }
+  .ov-kpi .v{
+    font-family:'Space Grotesk',sans-serif; font-weight:900;
+    font-size:24px; color:var(--ink); letter-spacing:-.5px;
+    margin-top:6px; line-height:1.1;
+  }
+  .ov-kpi .v.good{color:#1f3bff}
+  .ov-kpi .v.bad{color:#d11f5a}
+  .ov-kpi .v.warn{color:#ff8a00}
+  .ov-kpi .v.purple{color:#7b2cff}
+  .ov-kpi .delta{
+    display:inline-block; padding:2px 8px; border-radius:999px;
+    font-size:11px; font-weight:700; margin-top:6px;
+    background:var(--line); color:var(--ink-2);
+    font-family:'Space Grotesk',sans-serif; letter-spacing:.5px;
+  }
+  .ov-kpi .delta.ok{background:#eef1ff;color:#1f3bff}
+  .ov-kpi .delta.bad{background:#fde2ec;color:#d11f5a}
+  .ov-kpi .delta.warn{background:#ffe9d1;color:#ff8a00}
+  .ov-kpi .delta.pur{background:#f0e6ff;color:#7b2cff}
+
+  /* 诊断清单 */
+  .ov-diag{
+    margin-top:18px; border:2px solid var(--ink); border-radius:14px;
+    background:var(--paper); overflow:hidden;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .ov-diag .dh{
+    padding:14px 18px; background:var(--ink); color:#fff;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Bebas Neue',sans-serif; letter-spacing:4px; font-size:15px; font-weight:700;
+  }
+  .ov-diag .dh b{font-family:'Space Grotesk',sans-serif;letter-spacing:0;font-size:14px;color:#a974ff;font-weight:800}
+  .ov-diag ul{list-style:none; padding:6px 0; margin:0}
+  .ov-diag li{
+    display:grid; grid-template-columns: 32px 1fr auto; gap:12px;
+    padding:12px 18px; border-bottom:1px solid var(--line);
+    font-size:14px; font-weight:500; color:var(--ink-2); line-height:1.55;
+    align-items:center;
+  }
+  .ov-diag li:last-child{border-bottom:none}
+  .ov-diag li .ic{
+    width:26px; height:26px; border-radius:50%;
+    display:grid; place-items:center; font-size:13px; font-weight:900;
+    color:#fff; font-family:'Space Grotesk',sans-serif;
+  }
+  .ov-diag li.ok .ic{background:#1f3bff}
+  .ov-diag li.warn .ic{background:#ff8a00}
+  .ov-diag li.bad .ic{background:#d11f5a}
+  .ov-diag li.info .ic{background:#3a3a4d}
+  .ov-diag li b{color:var(--ink);font-weight:800}
+  .ov-diag li .tg{
+    font-family:'Bebas Neue',sans-serif; letter-spacing:2.5px;
+    font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px;
+    background:var(--line); color:var(--ink-2);
+  }
+  .ov-diag li.ok .tg{background:#eef1ff;color:#1f3bff}
+  .ov-diag li.warn .tg{background:#ffe9d1;color:#ff8a00}
+  .ov-diag li.bad .tg{background:#fde2ec;color:#d11f5a}
+
+  /* 雷达图容器 */
+  .ov-radar-wrap{
+    margin-top:18px; display:grid; grid-template-columns: 1fr 1fr; gap:18px;
+  }
+  .ov-radar-card{
+    border:2px solid var(--ink); border-radius:14px; background:var(--paper);
+    padding:18px; box-shadow:4px 4px 0 var(--ink);
+  }
+  .ov-radar-card .rh{
+    font-family:'Bebas Neue',sans-serif; letter-spacing:4px;
+    font-size:14px; font-weight:700; color:var(--ink);
+    padding-bottom:10px; border-bottom:2px solid var(--line); margin-bottom:14px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .ov-radar-card .rh b{font-family:'Space Grotesk',sans-serif;letter-spacing:0;font-size:13px;color:var(--purple);font-weight:800}
+  .ov-radar-card svg{width:100%; height:auto}
+  .ov-radar-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:12px;font-weight:700;color:var(--ink-2)}
+  .ov-radar-legend span{display:flex;align-items:center;gap:6px}
+  .ov-radar-legend i{display:inline-block;width:12px;height:12px;border-radius:3px}
+
+  @media (max-width: 1100px){
+    .tam-wrap{grid-template-columns:1fr}
+    .ov-hero{grid-template-columns:1fr;gap:20px}
+    .ov-hero h3{font-size:32px}
+    .ov-matrix{grid-template-columns:repeat(2,1fr)}
+    .persona{grid-template-columns:1fr}
+    .ov-radar-wrap{grid-template-columns:1fr}
+  }
+  @media print{
+    .swot-cell,.persona-card,.ov-kpi,.ov-diag,.ov-radar-card,.ov-hero{box-shadow:none !important}
+    .persona-card [contenteditable]:empty::before,.swot-cell [contenteditable]:empty::before{display:none}
+  }
+
+  /* ========== v5.3 通用可编辑：仅作用于"通过 enableUniversalEditing 升级的节点"，
+                通过 [data-k^="txt-"] 精确锁定，避免污染表格内已有的 editable 单元格。
+                ★ 关键：颜色/字号/字重/背景/排版全部 inherit，绝不覆盖父级样式（修复 v5.3 看不见字体问题）★
+                ========== */
+  [contenteditable="true"][data-k^="txt-"],
+  [contenteditable="true"][data-k^="txt-i"]{
+    /* 推翻老 [contenteditable="true"] 的全局强制 */
+    display: revert !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border-radius: 3px !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    color: inherit !important;
+    line-height: inherit !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    word-break: normal !important;
+    outline: none !important;
+    transition: background .15s, box-shadow .15s !important;
+    cursor: text;
+  }
+  /* 行内片段保持 inline，不要被 display:revert 变成块 */
+  span[data-k^="txt-"],strong[data-k^="txt-"],em[data-k^="txt-"],
+  b[data-k^="txt-"],i[data-k^="txt-"],u[data-k^="txt-"],
+  small[data-k^="txt-"],mark[data-k^="txt-"],
+  a[data-k^="txt-"],label[data-k^="txt-"]{
+    display: inline !important;
+    padding: 0 1px !important;
+  }
+  /* hover：浅蓝半透明高亮，绝不改文字色 */
+  [contenteditable="true"][data-k^="txt-"]:hover{
+    background: rgba(31,59,255,.10) !important;
+    box-shadow: inset 0 0 0 1px rgba(31,59,255,.35) !important;
+  }
+  /* focus：蓝色描边但保持原文字色与背景 */
+  [contenteditable="true"][data-k^="txt-"]:focus{
+    background: rgba(31,59,255,.06) !important;
+    box-shadow: inset 0 0 0 2px var(--blue) !important;
+    outline: none !important;
+  }
+  /* 在深色容器（topbar / hero 反色卡片 / 深紫渐变背景）上，hover 反馈用更浅的白雾，避免看不清 */
+  .topbar [contenteditable="true"][data-k^="txt-"]:hover,
+  .hero [contenteditable="true"][data-k^="txt-"]:hover,
+  .ov-hero [contenteditable="true"][data-k^="txt-"]:hover,
+  .gauge-wrap [contenteditable="true"][data-k^="txt-"]:hover,
+  [class*="dark"] [contenteditable="true"][data-k^="txt-"]:hover{
+    background: rgba(255,255,255,.14) !important;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.45) !important;
+  }
+  .topbar [contenteditable="true"][data-k^="txt-"]:focus,
+  .hero [contenteditable="true"][data-k^="txt-"]:focus,
+  .ov-hero [contenteditable="true"][data-k^="txt-"]:focus,
+  .gauge-wrap [contenteditable="true"][data-k^="txt-"]:focus,
+  [class*="dark"] [contenteditable="true"][data-k^="txt-"]:focus{
+    background: rgba(255,255,255,.18) !important;
+    box-shadow: inset 0 0 0 2px #fff !important;
+  }
+  /* ★ 表格单元格特例：升级后的 td/th 必须和原有"原生 contenteditable 单元格"完全一致的字号/内边距/行高，
+        否则同列里"被升级的"和"原生的"会大小不一致（截图1问题） */
+  td[data-k^="txt-"], th[data-k^="txt-"]{
+    display: table-cell !important;
+    padding: 7px 10px !important;
+    min-height: 32px !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    color: var(--ink) !important;
+    word-break: break-word !important;
+    vertical-align: middle !important;
+  }
+  th[data-k^="txt-"]{
+    font-weight: 700 !important;
+    color: var(--ink-2) !important;
+  }
+  td[data-k^="txt-"]:hover, th[data-k^="txt-"]:hover{
+    background: rgba(31,59,255,.08) !important;
+    box-shadow: inset 0 0 0 1px rgba(31,59,255,.3) !important;
+  }
+  td[data-k^="txt-"]:focus, th[data-k^="txt-"]:focus{
+    background: #fff !important;
+    box-shadow: inset 0 0 0 2px var(--blue) !important;
+  }
+
+  /* 打印时不显示编辑反馈 */
+  @media print{
+    [contenteditable="true"][data-k^="txt-"]:hover,
+    [contenteditable="true"][data-k^="txt-"]:focus{
+      background: transparent !important; box-shadow: none !important;
+    }
+  }
+
+  /* ===== v5.4 — 04 与 05 合并：销售模式紧凑版样式 ===== */
+  .sell-merge{margin-top:12px;display:grid;grid-template-columns:1fr;gap:14px}
+  .choice.compact{grid-template-columns:repeat(3,1fr);gap:10px;margin-top:0}
+  .choice.compact label{padding:12px 14px 11px;border-radius:11px;border-width:1.5px}
+  .choice.compact .ci{font-size:17px;letter-spacing:1px;margin-bottom:4px;font-weight:600}
+  .choice.compact .cd{font-size:11.5px;line-height:1.55;color:var(--ink-2)}
+  .sell-table{width:100%;border-collapse:collapse;font-size:13px}
+  .sell-table td{border:1px solid var(--line);padding:7px 10px;vertical-align:middle}
+  .sell-table td:first-child{background:var(--paper);color:var(--ink-2);font-weight:600;font-size:12.5px;width:130px}
+  .sell-table td [contenteditable]{min-height:22px;line-height:1.55;color:var(--ink);font-weight:500}
+  @media (max-width:900px){
+    .choice.compact{grid-template-columns:1fr}
+  }
+
+  /* ===== 协作条 ===== */
+  .collab-bar{
+    position:fixed;top:58px;right:16px;z-index:98;
+    display:flex;align-items:center;gap:10px;
+    background:var(--paper);border:1.5px solid var(--ink);border-radius:999px;
+    padding:6px 14px;box-shadow:3px 3px 0 var(--ink);
+    font-size:12px;color:var(--ink);
+    transition:.2s;
+  }
+  .collab-bar.hidden{display:none}
+  .collab-bar .status{display:flex;align-items:center;gap:6px;font-family:"Bebas Neue";letter-spacing:2px;font-weight:700}
+  .collab-bar .dot-live{width:8px;height:8px;border-radius:50%;background:#28c26c;box-shadow:0 0 8px #28c26c;animation:pulse 1.8s infinite}
+  .collab-bar .dot-off{width:8px;height:8px;border-radius:50%;background:#d11f5a}
+  .collab-bar .dot-syncing{width:8px;height:8px;border-radius:50%;background:#f1b100;animation:pulse 1.2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .collab-bar .sep{width:1px;height:16px;background:var(--line)}
+  .collab-bar .who{font-family:"Space Grotesk";font-weight:600;font-size:12.5px;color:var(--ink-2);max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .collab-bar .avatars{display:flex;margin-left:4px}
+  .collab-bar .avatars img{width:26px;height:26px;border-radius:50%;border:2px solid var(--paper);margin-left:-8px;object-fit:cover;background:var(--line)}
+  .collab-bar .avatars img:first-child{margin-left:0}
+  .collab-bar .btn-login{
+    font-family:"Bebas Neue";font-size:12px;letter-spacing:2px;padding:6px 14px;border-radius:999px;
+    background:var(--ink);color:#fff;border:none;cursor:pointer;font-weight:700;
+  }
+  .collab-bar .btn-logout{
+    font-size:11px;padding:4px 10px;border-radius:999px;
+    background:transparent;color:var(--ink-3);border:1px solid var(--line-2);cursor:pointer;
+  }
+  .collab-bar .btn-logout:hover{color:var(--bad);border-color:var(--bad)}
+  @media(max-width:900px){
+    .collab-bar{top:auto;bottom:16px;right:16px;padding:5px 12px;font-size:11px}
+    .collab-bar .who{max-width:100px}
+  }
+  @media print{.collab-bar{display:none !important}}
+
+</style>
+</head>
+<body>
+
+<!-- ===== 顶部固定工具栏 ===== -->
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>BUSINESS PLAN · EDITABLE</div>
+  <button class="btn primary" onclick="window.print()">🖨 打印 / 另存 PDF</button>
+  <button class="btn" onclick="saveLocal(true)">💾 保存</button>
+  <button class="btn" onclick="loadLocal()">📂 读取</button>
+  <button class="btn" onclick="clearAll()">♻ 清空</button>
+</div>
+
+<!-- ===== 实时协作状态条 ===== -->
+<div class="collab-bar hidden" id="collab-bar">
+  <div class="status" id="collab-status"><span class="dot-off"></span>OFFLINE</div>
+  <div class="sep"></div>
+  <div class="who" id="collab-who">未登录</div>
+  <div class="avatars" id="collab-avatars"></div>
+  <button class="btn-login" id="collab-login-btn" style="display:none">GitHub 登录</button>
+  <button class="btn-logout" id="collab-logout-btn" style="display:none">退出</button>
+</div>
+
+<div class="shell">
+
+  <!-- ===== 左侧导航 + 实时 KPI ===== -->
+  <aside class="sidenav" id="sidenav">
+    <div class="nav-title">NAVIGATE</div>
+    <a data-jump="p-cover" class="active"><span class="step">00</span><span>封面 · 基本信息</span></a>
+    <a data-jump="p-1"><span class="step">01</span><span>渠道 · 单品利润</span></a>
+    <a data-jump="p-2"><span class="step">02</span><span>品牌 · 包装</span></a>
+    <a data-jump="p-market"><span class="step">03</span><span>市场 · 用户 · 竞品 · 销售模式</span></a>
+    <a data-jump="p-4"><span class="step">04</span><span>整散利润对比</span></a>
+    <a data-jump="p-5"><span class="step">05</span><span>固定成本 · 渠道</span></a>
+    <a data-jump="p-6"><span class="step">06</span><span>目标 · Dashboard</span></a>
+    <a data-jump="p-overview"><span class="step">07</span><span>数据总览 · 健康度</span></a>
+    <a data-jump="p-7"><span class="step">08</span><span>备注 · 下一步</span></a>
+
+    <div class="nav-kpis">
+      <div class="kpi-title">LIVE KPI</div>
+      <div class="nav-kpi"><span class="lbl">月预计毛利</span><span class="val" id="nav-gross">¥0</span></div>
+      <div class="nav-kpi"><span class="lbl">月固定成本</span><span class="val" id="nav-fixed">¥0</span></div>
+      <div class="nav-kpi"><span class="lbl">月净利</span><span class="val good" id="nav-net">¥0</span></div>
+      <div class="nav-bar"><i id="nav-bar-fill" style="width:0%"></i></div>
+      <div class="nav-kpi"><span class="lbl">一次性投入</span><span class="val" id="nav-one">¥0</span></div>
+      <div class="nav-kpi"><span class="lbl">回本周期</span><span class="val" id="nav-payback">—</span></div>
+    </div>
+  </aside>
+
+  <div class="pages-wrap">
+
+<div class="pages">
+
+  <!-- ============ 第 1 页：封面 + 基本信息 ============ -->
+  <div class="page cover" id="p-cover">
+    <div class="top">
+      <div class="label">BUSINESS PLAN · 2026</div>
+      <div class="v">VERSION 4.0</div>
+    </div>
+    <div>
+      <h1>企业<br>规划书</h1>
+      <div class="sub-title">BLUEPRINT · 001</div>
+      <div class="desc">填完这张表，项目预算、渠道、包装、整散利润、门面成本、销售方式，一目了然。所有金额自动汇总到 Dashboard。</div>
+    </div>
+
+    <div class="cover-basic">
+      <h3>BASIC INFO · 基本信息</h3>
+      <div class="cover-grid">
+        <div><label>项目 / 品牌名</label><input type="text" data-k="bizName" placeholder="壳研所"></div>
+        <div><label>创始人</label><input type="text" data-k="owner" placeholder="你的名字"></div>
+        <div><label>城市 / 门面</label><input type="text" data-k="city" placeholder="XX 县步行街"></div>
+        <div><label>开业日期</label><input type="date" data-k="openDate"></div>
+        <div><label>启动资金 ¥</label><input type="number" data-k="startCap" placeholder="50000"></div>
+        <div><label>经营品类</label><input type="text" data-k="category" placeholder="DIY 手机壳"></div>
+        <div><label>联系方式</label><input type="text" data-k="contact" placeholder="手机号"></div>
+        <div><label>备注</label><input type="text" data-k="note"></div>
+      </div>
+    </div>
+
+    <div class="cover-viz">
+      <div class="donut">
+        <svg viewBox="0 0 42 42" id="cover-donut"></svg>
+        <div class="center">
+          <div class="n" id="cover-donut-n">¥0</div>
+          <div class="l">MONTHLY NET</div>
+        </div>
+      </div>
+      <div class="cv-kpis">
+        <div class="ck"><span class="l">MONTHLY REVENUE</span><span class="v" id="cover-rev">¥0</span></div>
+        <div class="ck"><span class="l">MONTHLY GROSS</span><span class="v" id="cover-gross">¥0</span></div>
+        <div class="ck"><span class="l">MONTHLY FIXED</span><span class="v" id="cover-fixed">¥0</span></div>
+        <div class="ck"><span class="l">ONE-TIME</span><span class="v" id="cover-one">¥0</span></div>
+        <div class="ck"><span class="l">MONTHLY NET</span><span class="v good" id="cover-net">¥0</span></div>
+        <div class="ck"><span class="l">PAYBACK</span><span class="v" id="cover-payback">—</span></div>
+      </div>
+    </div>
+
+    <div class="footer-cover">
+      <span>© 2026 BUSINESS PLAN</span>
+      <span>COVER · 01</span>
+    </div>
+  </div>
+
+  <div class="page-divider"><span class="dash"></span>PAGE BREAK<span class="dash"></span></div>
+
+  <!-- ============ 第 2 页：STEP 1 渠道成本 ============ -->
+  <div class="page" id="p-1">
+    <div class="page-num"><b>02</b>/ 9</div>
+    <section>
+      <div class="sec-head">
+        <div class="num">01</div>
+        <div class="titles">
+          <div class="en">SUPPLY & MARGIN</div>
+          <h2>找渠道 · 算成本 · 单品利润</h2>
+        </div>
+      </div>
+      <p class="sub">每个进货渠道列一行，系统自动算<b>单件毛利、毛利率、月利润</b>，底部合计「月单品总利润潜力」。</p>
+      <table id="t1">
+        <thead>
+          <tr>
+            <th style="width:130px">产品/品类</th>
+            <th style="width:160px">进货渠道</th>
+            <th>联系方式 / 链接</th>
+            <th style="width:74px">起订量</th>
+            <th style="width:82px">进货价¥</th>
+            <th style="width:82px">售价¥</th>
+            <th style="width:82px">单件毛利¥</th>
+            <th style="width:72px">毛利率</th>
+            <th style="width:82px">月销量</th>
+            <th style="width:96px">月利润¥</th>
+            <th class="row-action">✕</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot><tr><td colspan="9" style="text-align:right">月单品总利润</td><td class="num-cell" id="t1-sum">0</td><td></td></tr></tfoot>
+      </table>
+      <button class="add-row" onclick="addRow('t1')">＋ 添加一行</button>
+      <div class="tip"><b>💡 调研提示：</b>1688、义乌购、当地批发市场各找 1~2 家对比。进货价 ≠ 到手价，记得加快递/税/损耗。</div>
+
+      <div class="viz-card">
+        <div class="viz-head">
+          <div class="t">MONTHLY PROFIT · 单品月利润排行</div>
+          <div class="sub">条长 = 月利润；随表格实时刷新</div>
+        </div>
+        <div class="hbars" id="viz-t1"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-divider"><span class="dash"></span>PAGE BREAK<span class="dash"></span></div>
+
+  <!-- ============ 第 3 页：STEP 2 品牌包装 ============ -->
+  <div class="page" id="p-2">
+    <div class="page-num"><b>03</b>/ 9</div>
+    <section>
+      <div class="sec-head">
+        <div class="num">02</div>
+        <div class="titles">
+          <div class="en">BRAND & PACKAGING</div>
+          <h2>品牌包装</h2>
+        </div>
+      </div>
+      <p class="sub">从视觉识别到包装物料，全部一次性列清楚。<b>包装成本</b>会计入一次性投入，<b>物料耗材</b>计入月固定成本。</p>
+
+      <div class="sub-h"><span class="n">2.1</span>品牌核心定义<span class="line"></span></div>
+      <table>
+        <thead><tr><th style="width:180px">项目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>品牌 Slogan（一句话）</td><td><div contenteditable="true" data-k="b_slogan" data-ph="例如：能自己做的手机壳小店"></div></td></tr>
+          <tr><td>品牌调性关键词</td><td><div contenteditable="true" data-k="b_tone" data-ph="治愈 / 手作 / 独一无二 / 少女心"></div></td></tr>
+          <tr><td>主视觉配色（3~5 色）</td><td><div contenteditable="true" data-k="b_color" data-ph="黑 + 白 + 电光蓝 + 紫..."></div></td></tr>
+          <tr><td>Logo / 字体 / 吉祥物</td><td><div contenteditable="true" data-k="b_logo" data-ph="Logo 形式、主字体、是否有吉祥物"></div></td></tr>
+          <tr><td>故事 / 人设（个人 IP 用）</td><td><div contenteditable="true" data-k="b_story" data-ph="你是谁、为什么开店、和别家什么不同"></div></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-h"><span class="n">2.2</span>包装物料与设计费用<span class="line"></span></div>
+      <table id="t2">
+        <thead>
+          <tr>
+            <th style="width:150px">物料</th>
+            <th>用途/规格</th>
+            <th style="width:130px">供应商</th>
+            <th style="width:76px">数量</th>
+            <th style="width:90px">单价¥</th>
+            <th style="width:90px">小计¥</th>
+            <th style="width:100px">计入类别</th>
+            <th class="row-action">✕</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr><td colspan="5" style="text-align:right">一次性包装投入</td><td class="num-cell" id="t2-one">0</td><td></td><td></td></tr>
+          <tr><td colspan="5" style="text-align:right">月消耗包装成本</td><td class="num-cell" id="t2-mon">0</td><td></td><td></td></tr>
+        </tfoot>
+      </table>
+      <button class="add-row" onclick="addRow('t2')">＋ 添加一行</button>
+      <div class="tip"><b>💡 分类说明：</b>「一次性」如 logo 设计费、模具；「月消耗」如纸袋、贴纸、热封膜等随销售量消耗的物料。系统按你选的分类自动归入 Dashboard。</div>
+    </section>
+  </div>
+
+  <div class="page-divider"><span class="dash"></span>PAGE BREAK<span class="dash"></span></div>
+
+  <!-- ============ 新增页：STEP 3 市场分析 ============ -->
+  <div class="page" id="p-market">
+    <div class="page-num"><b>04</b>/ 9</div>
+    <section>
+      <div class="sec-head">
+        <div class="num">03</div>
+        <div class="titles">
+          <div class="en">MARKET & COMPETITION</div>
+          <h2>市场 · 用户 · 竞品</h2>
+        </div>
+      </div>
+      <p class="sub">先想清楚<b>谁会来买、市场有多大、对手是谁</b>，再谈生意能做多久。这一页决定你的打法。</p>
+
+      <!-- 3.1 用户画像 -->
+      <div class="sub-h"><span class="n">3.1</span>目标用户画像（3 类核心客群）<span class="line"></span></div>
+      <div class="persona">
+        <div class="persona-card p1">
+          <div class="avatar">A</div>
+          <h4 contenteditable="true" data-k="m_p1_name" data-ph="客群 A 名字">学生党 · 追潮</h4>
+          <div class="meta">AGE · INCOME · SCENE</div>
+          <div contenteditable="true" data-k="m_p1_desc" data-ph="年龄/收入/消费场景/触媒习惯">15-22 岁 / 月均 500-1500 / 逛街追潮牌</div>
+          <div class="meta">PAIN POINT 痛点</div>
+          <div contenteditable="true" data-k="m_p1_pain" data-ph="他们最烦什么、最想解决什么">想要独一无二、预算紧、怕撞款</div>
+          <div class="meta">OFFER 你卖给他什么</div>
+          <div contenteditable="true" data-k="m_p1_offer" data-ph="对应你的什么产品/服务">DIY 定制壳 39-59 档</div>
+        </div>
+        <div class="persona-card p2">
+          <div class="avatar">B</div>
+          <h4 contenteditable="true" data-k="m_p2_name" data-ph="客群 B 名字">职场女性 · 精致</h4>
+          <div class="meta">AGE · INCOME · SCENE</div>
+          <div contenteditable="true" data-k="m_p2_desc" data-ph="">22-35 岁 / 月 8k+ / 下班路过/小红书种草</div>
+          <div class="meta">PAIN POINT 痛点</div>
+          <div contenteditable="true" data-k="m_p2_pain" data-ph="">没时间慢慢挑、要显品质、愿意为设计买单</div>
+          <div class="meta">OFFER 你卖给他什么</div>
+          <div contenteditable="true" data-k="m_p2_offer" data-ph="">联名款/高档液态硅胶 79-129 档</div>
+        </div>
+        <div class="persona-card p3">
+          <div class="avatar">C</div>
+          <h4 contenteditable="true" data-k="m_p3_name" data-ph="客群 C 名字">送礼党 · 节日</h4>
+          <div class="meta">AGE · INCOME · SCENE</div>
+          <div contenteditable="true" data-k="m_p3_desc" data-ph="">18-45 岁 / 送礼场景 / 情人节/生日/圣诞</div>
+          <div class="meta">PAIN POINT 痛点</div>
+          <div contenteditable="true" data-k="m_p3_pain" data-ph="">要体面、要有仪式感、要能现场包装</div>
+          <div class="meta">OFFER 你卖给他什么</div>
+          <div contenteditable="true" data-k="m_p3_offer" data-ph="">礼盒装整包、带手写卡 99-199 档</div>
+        </div>
+      </div>
+
+      <!-- 3.2 市场规模 TAM/SAM/SOM -->
+      <div class="sub-h" style="margin-top:26px"><span class="n">3.2</span>市场规模估算 · TAM / SAM / SOM<span class="line"></span></div>
+      <p class="sub" style="margin-top:-4px">按<b>城市范围内可触达的年消费总额</b>倒推：</p>
+      <div class="tam-wrap">
+        <div class="tam-bubbles">
+          <div class="bb tam">
+            <div>
+              <div class="k">TAM</div>
+              <div class="v" id="m-tam">¥0</div>
+            </div>
+          </div>
+          <div class="bb sam">
+            <div>
+              <div class="k">SAM</div>
+              <div class="v" id="m-sam">¥0</div>
+            </div>
+          </div>
+          <div class="bb som">
+            <div>
+              <div class="k">SOM</div>
+              <div class="v" id="m-som">¥0</div>
+            </div>
+          </div>
+        </div>
+        <div class="tam-desc">
+          <div class="row tam">
+            <div class="lbl">TAM</div>
+            <div class="body">
+              <div class="t">总可触达市场 Total Addressable</div>
+              <div class="d">全城 · 同类商品一年总盘子。估算式：人口 <b contenteditable="true" data-k="m_pop">500万</b> × 手机持有率 <b contenteditable="true" data-k="m_owner">90%</b> × 人均年支出 <b contenteditable="true" data-k="m_spend">¥60</b> ≈ <b id="m-tam-calc">¥0</b></div>
+            </div>
+          </div>
+          <div class="row sam">
+            <div class="lbl">SAM</div>
+            <div class="body">
+              <div class="t">可服务市场 Serviceable Available</div>
+              <div class="d">你的商圈/渠道能触达的那部分。约占 TAM 的 <b contenteditable="true" data-k="m_sam_pct">5%</b> ≈ <b id="m-sam-calc">¥0</b>。这是你的"天花板"。</div>
+            </div>
+          </div>
+          <div class="row som">
+            <div class="lbl">SOM</div>
+            <div class="body">
+              <div class="t">可获取市场 Serviceable Obtainable</div>
+              <div class="d">3 年内你实际能拿下的份额。约占 SAM 的 <b contenteditable="true" data-k="m_som_pct">3%</b> ≈ <b id="m-som-calc">¥0</b>。这是你真正要追的目标。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.3 竞品对比 -->
+      <div class="sub-h" style="margin-top:26px"><span class="n">3.3</span>竞品对比矩阵（我 vs 同商圈 3 家）<span class="line"></span></div>
+      <p class="sub" style="margin-top:-4px">从<b>价格/品类/服务/流量</b>四维打 1-10 分，越高越强。第一行是你自己。</p>
+      <table id="t-comp">
+        <thead>
+          <tr>
+            <th style="width:22%">竞品</th>
+            <th style="width:18%">定位</th>
+            <th style="width:14%">价格段 ¥</th>
+            <th>产品力</th>
+            <th>服务力</th>
+            <th>流量力</th>
+            <th style="width:82px">综合</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="me">
+            <td><div contenteditable="true" data-k="m_c0_name">我的店</div></td>
+            <td><div contenteditable="true" data-k="m_c0_pos">DIY 定制 + 联名款</div></td>
+            <td><div contenteditable="true" class="num-cell" data-k="m_c0_price">39~129</div></td>
+            <td data-score="0"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c0_s1">7</span><div class="score-track"><div class="score-fill" style="width:70%"></div></div></div></td>
+            <td data-score="1"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c0_s2">8</span><div class="score-track"><div class="score-fill" style="width:80%"></div></div></div></td>
+            <td data-score="2"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c0_s3">5</span><div class="score-track"><div class="score-fill" style="width:50%"></div></div></div></td>
+            <td class="num-cell" id="m-c0-sum">20</td>
+          </tr>
+          <tr>
+            <td><div contenteditable="true" data-k="m_c1_name">商场连锁 A</div></td>
+            <td><div contenteditable="true" data-k="m_c1_pos">大牌代理</div></td>
+            <td><div contenteditable="true" class="num-cell" data-k="m_c1_price">89~299</div></td>
+            <td data-score="0"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c1_s1">8</span><div class="score-track"><div class="score-fill" style="width:80%"></div></div></div></td>
+            <td data-score="1"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c1_s2">6</span><div class="score-track"><div class="score-fill" style="width:60%"></div></div></div></td>
+            <td data-score="2"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c1_s3">8</span><div class="score-track"><div class="score-fill" style="width:80%"></div></div></div></td>
+            <td class="num-cell" id="m-c1-sum">22</td>
+          </tr>
+          <tr>
+            <td><div contenteditable="true" data-k="m_c2_name">步行街小摊 B</div></td>
+            <td><div contenteditable="true" data-k="m_c2_pos">低价走量</div></td>
+            <td><div contenteditable="true" class="num-cell" data-k="m_c2_price">9.9~39</div></td>
+            <td data-score="0"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c2_s1">4</span><div class="score-track"><div class="score-fill" style="width:40%"></div></div></div></td>
+            <td data-score="1"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c2_s2">3</span><div class="score-track"><div class="score-fill" style="width:30%"></div></div></div></td>
+            <td data-score="2"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c2_s3">6</span><div class="score-track"><div class="score-fill" style="width:60%"></div></div></div></td>
+            <td class="num-cell" id="m-c2-sum">13</td>
+          </tr>
+          <tr>
+            <td><div contenteditable="true" data-k="m_c3_name">拼多多同款 C</div></td>
+            <td><div contenteditable="true" data-k="m_c3_pos">线上爆款</div></td>
+            <td><div contenteditable="true" class="num-cell" data-k="m_c3_price">5.9~25</div></td>
+            <td data-score="0"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c3_s1">3</span><div class="score-track"><div class="score-fill" style="width:30%"></div></div></div></td>
+            <td data-score="1"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c3_s2">2</span><div class="score-track"><div class="score-fill" style="width:20%"></div></div></div></td>
+            <td data-score="2"><div class="score-bar"><span class="score-num" contenteditable="true" data-k="m_c3_s3">9</span><div class="score-track"><div class="score-fill" style="width:90%"></div></div></div></td>
+            <td class="num-cell" id="m-c3-sum">14</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="tip"><b>💡 结论怎么写：</b>你在三条线里<b>哪一条领先</b>？哪一条最弱？最弱的那条就是短期要补的。例如：产品力强但流量弱 → 第一季度重点是抖音+小红书曝光。</div>
+
+      <!-- 3.4 SWOT -->
+      <div class="sub-h" style="margin-top:26px"><span class="n">3.4</span>SWOT 战略四象限<span class="line"></span></div>
+      <div class="mkt-swot">
+        <div class="swot-cell s">
+          <span class="tag"><i>S</i>STRENGTHS · 优势</span>
+          <div class="hint">你比别人强的硬实力</div>
+          <div contenteditable="true" data-k="m_swot_s" data-ph="例：自己会设计/有稳定货源/门面位置好/有 3k 私域粉丝..."></div>
+        </div>
+        <div class="swot-cell w">
+          <span class="tag"><i>W</i>WEAKNESSES · 劣势</span>
+          <div class="hint">最大的短板</div>
+          <div contenteditable="true" data-k="m_swot_w" data-ph="例：启动资金只有 X 万/没做过抖音/一个人扛全流程..."></div>
+        </div>
+        <div class="swot-cell o">
+          <span class="tag"><i>O</i>OPPORTUNITIES · 机会</span>
+          <div class="hint">外部趋势的红利</div>
+          <div contenteditable="true" data-k="m_swot_o" data-ph="例：国补换机潮/小红书本地生活/同城直播流量便宜..."></div>
+        </div>
+        <div class="swot-cell t">
+          <span class="tag"><i>T</i>THREATS · 威胁</span>
+          <div class="hint">最可能把你搞死的风险</div>
+          <div contenteditable="true" data-k="m_swot_t" data-ph="例：商场引入大牌连锁/网红抄款内卷/房东涨租..."></div>
+        </div>
+      </div>
+      <div class="tip"><b>💡 SO/WT 打法：</b>用<b>优势 × 机会</b>（SO）定主攻方向；用<b>劣势 × 威胁</b>（WT）制定防守和底线。你最该赢的那场仗，就藏在 S × O 交叉格里。</div>
+
+      <!-- 3.5 销售模式（原第 4 页整合到此） -->
+      <div class="sub-h" style="margin-top:26px"><span class="n">3.5</span>销售模式 · 整包 vs 散包<span class="line"></span></div>
+      <p class="sub" style="margin-top:-4px">基于上面的人群与竞品，决定<b>主推方式</b>。下一页将自动对比整散利润差。</p>
+      <div class="sell-merge">
+        <div class="choice compact">
+          <label><input type="radio" name="sell" value="whole" data-k="sellMode"><span class="ci">① 整包 WHOLE</span><span class="cd">客单高、库存清晰，适合礼品 + 节日档。</span></label>
+          <label><input type="radio" name="sell" value="single" data-k="sellMode"><span class="ci">② 散包 SINGLE</span><span class="cd">门槛低、客流大，适合引流 + 学生党。</span></label>
+          <label><input type="radio" name="sell" value="both" data-k="sellMode" checked><span class="ci">③ 双轨 BOTH</span><span class="cd">整包做礼品，散包做日常，新手推荐。</span></label>
+        </div>
+        <table class="sell-table">
+          <tbody>
+            <tr><td style="width:130px">主推方式与原因</td><td><div contenteditable="true" data-k="sellWhy" data-ph="为什么选这个方式？预期客群是谁？"></div></td></tr>
+            <tr><td>定价策略</td><td><div contenteditable="true" data-k="pricePlan" data-ph="整包/散包分别定价，是否做会员价/批发价"></div></td></tr>
+            <tr><td>促销组合</td><td><div contenteditable="true" data-k="promo" data-ph="满减、第二件半价、赠品、拼团..."></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-divider"><span class="dash"></span>PAGE BREAK<span class="dash"></span></div>
+
+  <!-- ============ 第 4 页：STEP 4 整散利润 ============ -->
+  <div class="page" id="p-4">
+    <div class="page-num"><b>05</b>/ 9</div>
+    <section>
+      <div class="sec-head">
+        <div class="num">04</div>
+        <div class="titles">
+          <div class="en">PROFIT COMPARE</div>
+          <h2>整包利润 · 散包利润</h2>
+        </div>
+      </div>
+      <p class="sub">同一款产品按整包/散包分别填，系统自动算<b>月整包利润</b>、<b>月散包利润</b>以及两者差值。</p>
+      <table id="t4">
+        <thead>
+          <tr>
+            <th style="width:130px">产品名称</th>
+            <th style="width:68px">整包件数</th>
+            <th style="width:80px">整包成本¥</th>
+            <th style="width:80px">整包售价¥</th>
+            <th style="width:80px">整包利润¥</th>
+            <th style="width:80px">月销整包</th>
+            <th style="width:96px">月整包利润¥</th>
+            <th style="width:82px">散包售价¥</th>
+            <th style="width:92px">拆散总收入¥</th>
+            <th style="width:82px">散包利润¥</th>
+            <th style="width:82px">月销散包</th>
+            <th style="width:96px">月散包利润¥</th>
+            <th style="width:76px">利润差</th>
+            <th class="row-action">✕</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6" style="text-align:right">月整包利润合计</td>
+            <td class="num-cell" id="t4-whole">0</td>
+            <td colspan="4" style="text-align:right">月散包利润合计</td>
+            <td class="num-cell" id="t4-single">0</td>
+            <td class="num-cell" id="t4-diff">0</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <button class="add-row" onclick="addRow('t4')">＋ 添加一行</button>
+      <div class="tip"><b>💡 提示：</b>利润差 = 月散包利润 − 月整包利润。<b>为正则散包更赚</b>，为负则整包更赚。</div>
+
+      <div class="viz-card">
+        <div class="viz-head">
+          <div class="t">WHOLE vs SINGLE · 整散月利润双柱对比</div>
+          <div class="sub">蓝 = 整包利润 · 紫 = 散包利润</div>
+        </div>
+        <div class="dual-bars" id="viz-t4"></div>
+        <div class="dual-delta">
+          <span>两种方式月利润差（散 − 整）</span>
+          <b id="viz-t4-delta">+0</b>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-divider"><span class="dash"></span>PAGE BREAK<span class="dash"></span></div>
+
+  <!-- ============ 第 6 页：STEP 5 门面/人工/销售方式 ============ -->
+  <div class="page" id="p-5">
+    <div class="page-num"><b>06</b>/ 9</div>
+    <section>
+      <div class="sec-head">
+        <div class="num">05</div>
+        <div class="titles">
+          <div class="en">FIXED COST & CHANNELS</div>
+          <h2>门面 · 人工 · 销售方式</h2>
+        </div>
+      </div>
+      <p class="sub">所有每月固定开销全列进来——这是<b>保本线</b>；销售渠道表看清<b>流水来源分布</b>。</p>
+
+      <div class="sub-h"><span class="n">5.1</span>一次性投入（开店前）<span class="line"></span></div>
+      <table id="t5a">
+        <thead><tr><th style="width:220px">项目</th><th>说明</th><th style="width:140px">金额¥</th><th class="row-action">✕</th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><td>一次性投入合计</td><td></td><td class="num-cell" id="t5a-sum">0</td><td></td></tr></tfoot>
+      </table>
+      <button class="add-row" onclick="addRow('t5a')">＋ 添加一行</button>
+
+      <div class="viz-card">
+        <div class="viz-head">
+          <div class="t">ONE-TIME STACK · 一次性投入结构</div>
+          <div class="sub">条宽 = 金额占比，鼠标悬停看明细</div>
+        </div>
+        <div class="stack-bar" id="viz-t5a-stack"></div>
+        <div class="stack-legend" id="viz-t5a-legend"></div>
+      </div>
+
+      <div class="sub-h"><span class="n">5.2</span>每月固定成本<span class="line"></span></div>
+      <table id="t5b">
+        <thead><tr><th style="width:220px">项目</th><th>说明</th><th style="width:140px">金额¥/月</th><th class="row-action">✕</th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><td>每月固定成本合计</td><td></td><td class="num-cell" id="t5b-sum">0</td><td></td></tr></tfoot>
+      </table>
+      <button class="add-row" onclick="addRow('t5b')">＋ 添加一行</button>
+
+      <div class="sub-h"><span class="n">5.3</span>销售方式（渠道与权重）<span class="line"></span></div>
+      <table id="t5c">
+        <thead><tr><th style="width:220px">销售渠道</th><th>具体做法</th><th style="width:110px">预估占比%</th><th style="width:130px">月流水¥</th><th class="row-action">✕</th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><td>合计</td><td></td><td class="num-cell" id="t5c-pct">0</td><td class="num-cell" id="t5c-sum">0</td><td></td></tr></tfoot>
+      </table>
+      <button class="add-row" onclick="addRow('t5c')">＋ 添加一行</button>
+
+      <div class="viz-card">
+        <div class="viz-head">
+          <div class="t">CHANNEL MIX · 销售渠道流水构成</div>
+          <div class="sub">按月流水 ¥ 加权</div>
+        </div>
+        <div class="donut-wrap">
+          <div class="donut">
+            <svg viewBox="0 0 42 42" id="viz-t5c-donut"></svg>
+            <div class="center">
+              <div class="n" id="viz-t5c-n">¥0</div>
+              <div class="l">MONTHLY REVENUE</div>
+            </div>
+          </div>
+          <div class="donut-legend" id="viz-t5c-legend"></div>
+        </div>
+      </div>
+
+      <div class="viz-card">
+        <div class="viz-head">
+          <div class="t">MONTHLY FUNNEL · 月度经营漏斗</div>
+          <div class="sub">流水 → 毛利 → 净利 → 回本速度</div>
+        </div>
+        <div class="funnel" id="viz-funnel"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-divider"><span class="dash"></span>PAGE BREAK<span class="dash"></span></div>
+
+  <!-- ============ 第 7 页：STEP 6 目标 + STEP 7 Dashboard ============ -->
+  <div class="page" id="p-6">
+    <div class="page-num"><b>07</b>/ 9</div>
+    <section>
+      <div class="sec-head">
+        <div class="num">06</div>
+        <div class="titles">
+          <div class="en">TARGET</div>
+          <h2>营收目标 · 盈亏平衡</h2>
+        </div>
+      </div>
+      <p class="sub">按 <b>1 / 3 / 6 / 12 月</b>分阶段填，倒推每日目标。</p>
+      <table>
+        <thead><tr><th style="width:180px">目标项</th><th>第 1 个月</th><th>第 3 个月</th><th>第 6 个月</th><th>第 12 个月</th></tr></thead>
+        <tbody>
+          <tr><td>日均进店人数</td>
+            <td><div contenteditable="true" data-k="g_daily_1" data-ph="人"></div></td>
+            <td><div contenteditable="true" data-k="g_daily_3" data-ph="人"></div></td>
+            <td><div contenteditable="true" data-k="g_daily_6" data-ph="人"></div></td>
+            <td><div contenteditable="true" data-k="g_daily_12" data-ph="人"></div></td></tr>
+          <tr><td>日成交单数</td>
+            <td><div contenteditable="true" data-k="g_order_1" data-ph="单"></div></td>
+            <td><div contenteditable="true" data-k="g_order_3" data-ph="单"></div></td>
+            <td><div contenteditable="true" data-k="g_order_6" data-ph="单"></div></td>
+            <td><div contenteditable="true" data-k="g_order_12" data-ph="单"></div></td></tr>
+          <tr><td>客单价¥</td>
+            <td><div contenteditable="true" data-k="g_price_1"></div></td>
+            <td><div contenteditable="true" data-k="g_price_3"></div></td>
+            <td><div contenteditable="true" data-k="g_price_6"></div></td>
+            <td><div contenteditable="true" data-k="g_price_12"></div></td></tr>
+          <tr><td>月流水¥</td>
+            <td><div contenteditable="true" data-k="g_rev_1"></div></td>
+            <td><div contenteditable="true" data-k="g_rev_3"></div></td>
+            <td><div contenteditable="true" data-k="g_rev_6"></div></td>
+            <td><div contenteditable="true" data-k="g_rev_12"></div></td></tr>
+          <tr><td>净利润¥</td>
+            <td><div contenteditable="true" data-k="g_np_1"></div></td>
+            <td><div contenteditable="true" data-k="g_np_3"></div></td>
+            <td><div contenteditable="true" data-k="g_np_6"></div></td>
+            <td><div contenteditable="true" data-k="g_np_12"></div></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section style="margin-top:44px">
+      <div class="sec-head">
+        <div class="num">06</div>
+        <div class="titles">
+          <div class="en">DASHBOARD</div>
+          <h2>实时汇总</h2>
+        </div>
+      </div>
+      <p class="sub">随上面填写<b>自动更新</b>。蓝色是自动计算项，正数表示能赚钱。</p>
+      <div class="dash-layout">
+        <div class="dash-left">
+          <div class="dh">COST vs PROFIT · 月度结构</div>
+          <div class="donut">
+            <svg viewBox="0 0 42 42" id="dash-donut"></svg>
+            <div class="center">
+              <div class="n" id="dash-donut-n">¥0</div>
+              <div class="l">NET PROFIT</div>
+            </div>
+          </div>
+          <div class="donut-legend" id="dash-donut-legend"></div>
+        </div>
+
+        <div class="dash-right">
+          <div class="dash-kpi"><small>ONE-TIME 一次性投入</small><b id="d1">¥0</b><div class="hint">装修 + 设备 + 一次性包装</div></div>
+          <div class="dash-kpi"><small>MONTHLY 月固定成本</small><b id="d2">¥0</b><div class="hint">房租 + 人工 + 月消耗</div></div>
+          <div class="dash-kpi"><small>REVENUE 月预期流水</small><b id="d3">¥0</b><div class="hint">来自销售渠道表</div></div>
+          <div class="dash-kpi"><small>GROSS 月预计毛利</small><b id="d4">¥0</b><div class="hint">整包+散包+单品</div></div>
+          <div class="dash-kpi"><small>PAYBACK 回本周期</small><b id="d6">—</b><div class="hint">一次性÷月净利</div></div>
+          <div class="dash-kpi hl"><small>NET 月净利</small><b id="d5">¥0</b><div class="hint">月毛利 − 月固定成本</div></div>
+        </div>
+      </div>
+
+      <div class="breakeven">
+        <div class="bh">
+          <span>BREAK-EVEN · 保本线 vs 月毛利</span>
+          <span>月毛利 / 月固定 = <b id="be-ratio">0%</b></span>
+        </div>
+        <div class="btrack">
+          <div class="bfill" id="be-fill" style="width:0%"></div>
+          <div class="bmark" data-label="保本 100%" id="be-mark" style="left:50%"></div>
+        </div>
+        <div class="tags">
+          <span><i style="background:var(--gradient)"></i>月毛利实现度</span>
+          <span><i style="background:var(--ink)"></i>保本线标记</span>
+          <span id="be-note" style="margin-left:auto;color:var(--ink-2);font-weight:700"></span>
+        </div>
+      </div>
+
+      <div class="waterfall">
+        <div class="wh">CASH WATERFALL · 月度现金流瀑布</div>
+        <div class="wf-grid" id="wf-grid">
+          <div class="wf-col"><span class="wf-val" id="wf-v1">¥0</span><div class="wf-bar rev" id="wf-b1" style="height:10%"></div><span class="wf-lab">REVENUE</span><span class="wf-sub">月流水</span></div>
+          <div class="wf-col"><span class="wf-val" id="wf-v2">¥0</span><div class="wf-bar gross" id="wf-b2" style="height:10%"></div><span class="wf-lab">GROSS</span><span class="wf-sub">月毛利</span></div>
+          <div class="wf-col"><span class="wf-val" id="wf-v3">¥0</span><div class="wf-bar fixed" id="wf-b3" style="height:10%"></div><span class="wf-lab">FIXED</span><span class="wf-sub">月固定成本</span></div>
+          <div class="wf-col"><span class="wf-val" id="wf-v4">¥0</span><div class="wf-bar net" id="wf-b4" style="height:10%"></div><span class="wf-lab">NET</span><span class="wf-sub">月净利</span></div>
+          <div class="wf-col"><span class="wf-val" id="wf-v5">—</span><div class="wf-bar net" id="wf-b5" style="height:10%"></div><span class="wf-lab">PAYBACK</span><span class="wf-sub">回本月数</span></div>
+        </div>
+        <div class="wf-note" id="wf-note"><b>💰 解读：</b>填入表格后，这里会自动显示"流水 → 毛利 → 扣固定 → 净利 → 回本"的完整链路。</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-divider"><span class="dash"></span>PAGE BREAK<span class="dash"></span></div>
+
+  <!-- ============ 新增页：STEP 8 数据总览 · 健康度 ============ -->
+  <div class="page" id="p-overview">
+    <div class="page-num"><b>08</b>/ 9</div>
+    <section>
+      <div class="sec-head">
+        <div class="num">07</div>
+        <div class="titles">
+          <div class="en">EXECUTIVE OVERVIEW</div>
+          <h2>数据总览 · 健康度</h2>
+        </div>
+      </div>
+      <p class="sub">整份规划书的<b>一页纸体检报告</b>：看一眼就知道赚不赚钱、多久回本、哪里有问题。</p>
+
+      <!-- Hero：健康度分数 -->
+      <div class="ov-hero">
+        <div>
+          <div class="label">BUSINESS HEALTH SCORE</div>
+          <h3 id="ov-hero-title">填完表格，这里显示你的生意体检分</h3>
+          <div style="font-size:14.5px;font-weight:500;color:#cfcfe0;line-height:1.6" id="ov-hero-sub">基于 6 个维度的综合打分：盈利能力 / 现金流健康 / 成本结构 / 市场位置 / 执行准备 / 风险抗性</div>
+          <div class="tag-row" id="ov-tag-row">
+            <span class="tg">READY TO START</span>
+          </div>
+        </div>
+        <div class="ov-gauge">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="12"/>
+            <circle id="ov-gauge-arc" cx="60" cy="60" r="50" fill="none" stroke="url(#gg-grad)" stroke-width="12" stroke-linecap="round"
+              stroke-dasharray="0 314" style="transition:stroke-dasharray .6s cubic-bezier(.4,0,.2,1)"/>
+            <defs>
+              <linearGradient id="gg-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1f3bff"/>
+                <stop offset="50%" stop-color="#7b2cff"/>
+                <stop offset="100%" stop-color="#ff6b9a"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="center">
+            <div class="g-label">SCORE / 100</div>
+            <div class="score"><span id="ov-score">0</span><small>/100</small></div>
+            <div class="grade" id="ov-grade" style="color:#a974ff">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 指标矩阵 -->
+      <div class="ov-matrix">
+        <div class="ov-kpi">
+          <div class="k">REVENUE</div>
+          <div class="sub-k">月流水</div>
+          <div class="v" id="ov-k-rev">¥0</div>
+          <span class="delta pur" id="ov-k-rev-d">待填写</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">GROSS PROFIT</div>
+          <div class="sub-k">月毛利</div>
+          <div class="v" id="ov-k-gross">¥0</div>
+          <span class="delta ok" id="ov-k-gross-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">NET PROFIT</div>
+          <div class="sub-k">月净利</div>
+          <div class="v" id="ov-k-net">¥0</div>
+          <span class="delta ok" id="ov-k-net-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">GROSS MARGIN</div>
+          <div class="sub-k">毛利率</div>
+          <div class="v" id="ov-k-gm">0%</div>
+          <span class="delta pur" id="ov-k-gm-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">NET MARGIN</div>
+          <div class="sub-k">净利率</div>
+          <div class="v" id="ov-k-nm">0%</div>
+          <span class="delta pur" id="ov-k-nm-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">BE RATIO</div>
+          <div class="sub-k">保本达成率</div>
+          <div class="v" id="ov-k-be">0%</div>
+          <span class="delta ok" id="ov-k-be-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">PAYBACK</div>
+          <div class="sub-k">回本周期</div>
+          <div class="v" id="ov-k-pb">—</div>
+          <span class="delta pur" id="ov-k-pb-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">ROI · YEAR 1</div>
+          <div class="sub-k">首年投资回报</div>
+          <div class="v" id="ov-k-roi">0%</div>
+          <span class="delta pur" id="ov-k-roi-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">CAPEX</div>
+          <div class="sub-k">一次性投入</div>
+          <div class="v" id="ov-k-capex">¥0</div>
+          <span class="delta" id="ov-k-capex-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">OPEX · MONTHLY</div>
+          <div class="sub-k">月固定成本</div>
+          <div class="v" id="ov-k-opex">¥0</div>
+          <span class="delta" id="ov-k-opex-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">CHANNELS</div>
+          <div class="sub-k">收入渠道数</div>
+          <div class="v" id="ov-k-ch">0</div>
+          <span class="delta pur" id="ov-k-ch-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">SKU</div>
+          <div class="sub-k">在售品类数</div>
+          <div class="v" id="ov-k-sku">0</div>
+          <span class="delta pur" id="ov-k-sku-d">—</span>
+        </div>
+        <div class="ov-kpi">
+          <div class="k">COMP RANK</div>
+          <div class="sub-k">竞品综合排名</div>
+          <div class="v" id="ov-k-rank">—</div>
+          <span class="delta pur" id="ov-k-rank-d">—</span>
+        </div>
+      </div>
+
+      <!-- 雷达图 + 对手雷达 -->
+      <div class="ov-radar-wrap">
+        <div class="ov-radar-card">
+          <div class="rh"><span>BUSINESS HEALTH · 6 维度雷达</span><b id="ov-radar-avg">AVG 0</b></div>
+          <svg viewBox="0 0 320 300" id="ov-radar"></svg>
+          <div class="ov-radar-legend">
+            <span><i style="background:#1f3bff"></i>盈利能力</span>
+            <span><i style="background:#7b2cff"></i>现金流</span>
+            <span><i style="background:#a974ff"></i>成本结构</span>
+            <span><i style="background:#ff6b9a"></i>市场位置</span>
+            <span><i style="background:#ff8a00"></i>执行准备</span>
+            <span><i style="background:#0b0b14"></i>风险抗性</span>
+          </div>
+        </div>
+        <div class="ov-radar-card">
+          <div class="rh"><span>COMPETITIVE MAP · 我 vs 对手</span><b id="ov-comp-me">ME —</b></div>
+          <svg viewBox="0 0 320 300" id="ov-comp-radar"></svg>
+          <div class="ov-radar-legend" id="ov-comp-legend"></div>
+        </div>
+      </div>
+
+      <!-- 诊断清单 -->
+      <div class="ov-diag">
+        <div class="dh">
+          <span>AUTO DIAGNOSIS · 智能诊断清单</span>
+          <b id="ov-diag-sum">0 项提醒</b>
+        </div>
+        <ul id="ov-diag-list">
+          <li class="info">
+            <span class="ic">i</span>
+            <span>填入前面表格后，这里会自动生成诊断意见。</span>
+            <span class="tg">WAITING</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-divider"><span class="dash"></span>PAGE BREAK<span class="dash"></span></div>
+
+  <!-- ============ 第 8 页：备注 & 下一步 ============ -->
+  <div class="page" id="p-7">
+    <div class="page-num"><b>09</b>/ 9</div>
+    <section>
+      <div class="sec-head">
+        <div class="num">08</div>
+        <div class="titles">
+          <div class="en">NOTES & NEXT</div>
+          <h2>备注 / 下一步</h2>
+        </div>
+      </div>
+      <p class="sub">把<b>本周必须做完的事</b>写下来；把<b>风险和对策</b>提前列好。</p>
+      <table>
+        <thead><tr><th style="width:200px">事项</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>本周 3 件最重要的事</td><td><div contenteditable="true" data-k="n_top3" data-ph="按优先级列 3 件必须本周做完的事"></div></td></tr>
+          <tr><td>风险与对策</td><td><div contenteditable="true" data-k="n_risk" data-ph="现金流、版权、竞品、客流..."></div></td></tr>
+          <tr><td>三个月里程碑</td><td><div contenteditable="true" data-k="n_milestone" data-ph="粉丝 2000 / 月流水 2.5w / 复购 15%"></div></td></tr>
+          <tr><td>六个月复盘要点</td><td><div contenteditable="true" data-k="n_review" data-ph="留存 / 爆款 / SOP / 团队"></div></td></tr>
+          <tr><td>其他</td><td><div contenteditable="true" data-k="n_other" data-ph=""></div></td></tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:40px;text-align:center;padding:30px;border:2px dashed var(--line-2);border-radius:16px">
+        <div style="font-family:'Bebas Neue';letter-spacing:6px;color:var(--purple);font-size:14px">END OF DOCUMENT</div>
+        <div style="font-family:'Fraunces',serif;font-weight:900;font-size:32px;color:var(--ink);margin-top:8px;letter-spacing:-.5px">干就完事了.</div>
+        <div style="color:var(--ink-3);font-size:12px;margin-top:6px;letter-spacing:2px;font-family:'Space Grotesk'">JUST DO IT. — v4.0 / 2026</div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+  </div>
+</div>
+
+<script>
+/* ========== 行模板 ========== */
+const ROW_TPL = {
+  t1: () => `
+    <td><div contenteditable="true" data-ph="产品名称"></div></td>
+    <td><div contenteditable="true" data-ph="1688/义乌/本地批发"></div></td>
+    <td><div contenteditable="true" data-ph="店铺名/电话/链接"></div></td>
+    <td><div contenteditable="true" data-ph="件"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="cost"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="price"></div></td>
+    <td><div class="num-cell auto" data-auto="profit">0</div></td>
+    <td><div class="num-cell auto" data-auto="margin">0%</div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="qty" data-ph="件/月"></div></td>
+    <td><div class="num-cell auto" data-auto="monthp">0</div></td>
+    <td class="row-action"><button class="del-btn" onclick="delRow(this)">✕</button></td>`,
+  t2: () => `
+    <td><div contenteditable="true" data-ph="logo设计/纸袋/贴纸..."></div></td>
+    <td><div contenteditable="true" data-ph="用途、尺寸、数量说明"></div></td>
+    <td><div contenteditable="true" data-ph="设计师/1688/拼多多"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="qty"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="unit"></div></td>
+    <td><div class="num-cell auto" data-auto="sub">0</div></td>
+    <td>
+      <select class="pkg-type" onchange="recalcAll();saveLocal()" style="width:100%;padding:7px 6px;border:1.5px solid var(--line-2);border-radius:6px;background:#fff;font-family:inherit;font-size:12.5px;color:var(--ink);font-weight:600">
+        <option value="one">一次性</option>
+        <option value="mon">月消耗</option>
+      </select>
+    </td>
+    <td class="row-action"><button class="del-btn" onclick="delRow(this)">✕</button></td>`,
+  t4: () => `
+    <td><div contenteditable="true" data-ph="产品名称"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="pcs"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="wcost"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="wprice"></div></td>
+    <td><div class="num-cell auto" data-auto="wprofit">0</div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="wqty" data-ph="包/月"></div></td>
+    <td><div class="num-cell auto" data-auto="wmonth">0</div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="sprice"></div></td>
+    <td><div class="num-cell auto" data-auto="stotal">0</div></td>
+    <td><div class="num-cell auto" data-auto="sprofit">0</div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="sqty" data-ph="件/月"></div></td>
+    <td><div class="num-cell auto" data-auto="smonth">0</div></td>
+    <td><div class="num-cell auto" data-auto="diff">0</div></td>
+    <td class="row-action"><button class="del-btn" onclick="delRow(this)">✕</button></td>`,
+  t5a: () => `
+    <td><div contenteditable="true" data-ph="装修 / 设备 / 押金"></div></td>
+    <td><div contenteditable="true" data-ph="说明"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="amount"></div></td>
+    <td class="row-action"><button class="del-btn" onclick="delRow(this)">✕</button></td>`,
+  t5b: () => `
+    <td><div contenteditable="true" data-ph="房租 / 水电 / 员工"></div></td>
+    <td><div contenteditable="true" data-ph="说明"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="amount"></div></td>
+    <td class="row-action"><button class="del-btn" onclick="delRow(this)">✕</button></td>`,
+  t5c: () => `
+    <td><div contenteditable="true" data-ph="线下到店 / 抖音 / 私域 / 拼多多"></div></td>
+    <td><div contenteditable="true" data-ph="具体做法、话术、频次"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="pct"></div></td>
+    <td><div contenteditable="true" class="num-cell" data-calc="rev"></div></td>
+    <td class="row-action"><button class="del-btn" onclick="delRow(this)">✕</button></td>`,
+};
+
+/* ========== 默认数据 ========== */
+const DEFAULTS = {
+  t1: [
+    ["TPU 素壳（通用机型）","1688 深圳 XX 商行","店铺名/电话","500","4","20","","","","200"],
+    ["液态硅胶壳","义乌购 XX 饰品","","100","8","35","","","","100"],
+    ["DIY 奶油胶材料包","1688 广州 XX","","50","6","39","","","","80"],
+  ],
+  t2: [
+    ["Logo+VI 设计","一次性设计费，含 logo/名片/招牌","freelancer/特赞","1","2500"],
+    ["手提纸袋","品牌 logo，小中大三码","拼多多定制","1000","1.2"],
+    ["感谢贴纸","圆形 5cm，随单送","喵喵贴定制","2000","0.15"],
+    ["快递泡沫袋","发快递用","1688","500","0.25"],
+    ["礼品包装盒","整包装礼盒","1688","200","2.5"],
+  ],
+  t4: [
+    ["某爆款素壳","10","40","160","","3","","24","","","60",""],
+    ["DIY 成品壳","6","60","240","","2","","58","","","40",""],
+  ],
+  t5a: [
+    ["门面押二付三","押金+前3个月房租","12000"],
+    ["装修+打卡墙","","15000"],
+    ["UV 打印机+工具","","10000"],
+    ["首批货+材料","","8000"],
+    ["营业执照/杂项","","2000"],
+  ],
+  t5b: [
+    ["房租","门面月租","3000"],
+    ["水电网","","300"],
+    ["营销推广","抖音 Dou+/同城","500"],
+    ["人工","自己+兼职","2000"],
+    ["杂项","","300"],
+  ],
+  t5c: [
+    ["线下到店","门面自然流量","50","8000"],
+    ["抖音本地同城","短视频+直播引流","25","5000"],
+    ["私域社群","企业微信+朋友圈","15","3000"],
+    ["外卖/电商","拼多多/小红书小店","10","2000"],
+  ],
+};
+const T2_DEFAULT_TYPES = ["one","mon","mon","mon","one"];
+
+/* ========== 工具 ========== */
+function $(s,r=document){return r.querySelector(s)}
+function $$(s,r=document){return [...r.querySelectorAll(s)]}
+function toNum(el){if(!el)return 0;const t=(el.textContent||el.value||"").replace(/[^\d.\-]/g,"");const n=parseFloat(t);return isNaN(n)?0:n}
+function fmt(n){if(!isFinite(n))return "0";return Math.round(n*100)/100}
+function fmtYuan(n){return "¥"+fmt(n).toLocaleString()}
+
+/* ========== 增删 ========== */
+function addRow(tableId, fill, extra){
+  const tb = $(`#${tableId} tbody`);
+  const tr = document.createElement("tr");
+  tr.innerHTML = ROW_TPL[tableId]();
+  tb.appendChild(tr);
+  if(fill){
+    const cells = $$("[contenteditable='true']",tr);
+    fill.forEach((v,i)=>{ if(cells[i] && v!=null) cells[i].textContent = v; });
+  }
+  if(tableId==="t2"){
+    const sel = $(".pkg-type",tr);
+    if(extra){ sel.value = extra; }
+    else if(fill){
+      const idx = $$("tbody tr",tb).length - 1;
+      if(T2_DEFAULT_TYPES[idx]) sel.value = T2_DEFAULT_TYPES[idx];
+    }
+  }
+  attachListeners(tr);
+  recalcAll();
+}
+function delRow(btn){ btn.closest("tr").remove(); recalcAll(); saveLocal(); }
+
+/* ========== 计算 ========== */
+function recalcAll(){
+  // T1 单品
+  let t1sum = 0;
+  $$("#t1 tbody tr").forEach(tr=>{
+    const cost = toNum($("[data-calc='cost']",tr));
+    const price = toNum($("[data-calc='price']",tr));
+    const qty = toNum($("[data-calc='qty']",tr));
+    const profit = price - cost;
+    const margin = price>0 ? (profit/price*100) : 0;
+    const monthp = profit*qty;
+    $("[data-auto='profit']",tr).textContent = fmt(profit);
+    const mEl = $("[data-auto='margin']",tr);
+    mEl.textContent = fmt(margin)+"%";
+    mEl.style.color = margin>=50?"var(--blue)":margin>=25?"var(--purple)":"var(--bad)";
+    $("[data-auto='monthp']",tr).textContent = fmt(monthp);
+    t1sum += monthp;
+  });
+  $("#t1-sum").textContent = fmt(t1sum);
+
+  // T2 包装
+  let t2one=0, t2mon=0;
+  $$("#t2 tbody tr").forEach(tr=>{
+    const qty = toNum($("[data-calc='qty']",tr));
+    const unit = toNum($("[data-calc='unit']",tr));
+    const sub = qty*unit;
+    $("[data-auto='sub']",tr).textContent = fmt(sub);
+    const type = $(".pkg-type",tr)?.value || "one";
+    if(type==="one") t2one += sub; else t2mon += sub;
+  });
+  $("#t2-one").textContent = fmt(t2one);
+  $("#t2-mon").textContent = fmt(t2mon);
+
+  // T4 整散对比
+  let t4w=0, t4s=0;
+  $$("#t4 tbody tr").forEach(tr=>{
+    const pcs = toNum($("[data-calc='pcs']",tr));
+    const wcost = toNum($("[data-calc='wcost']",tr));
+    const wprice = toNum($("[data-calc='wprice']",tr));
+    const wqty = toNum($("[data-calc='wqty']",tr));
+    const sprice = toNum($("[data-calc='sprice']",tr));
+    const sqty = toNum($("[data-calc='sqty']",tr));
+
+    const wprofit = wprice - wcost;
+    const stotal = sprice * pcs;
+    const sprofit = stotal - wcost;
+    const wmonth = wprofit * wqty;
+    const perPiece = pcs>0 ? (stotal - wcost)/pcs : 0;
+    const smonth = perPiece * sqty;
+    const diff = smonth - wmonth;
+
+    $("[data-auto='wprofit']",tr).textContent = fmt(wprofit);
+    $("[data-auto='stotal']",tr).textContent = fmt(stotal);
+    $("[data-auto='sprofit']",tr).textContent = fmt(sprofit);
+    $("[data-auto='wmonth']",tr).textContent = fmt(wmonth);
+    $("[data-auto='smonth']",tr).textContent = fmt(smonth);
+    const dEl = $("[data-auto='diff']",tr);
+    dEl.textContent = (diff>=0?"+":"")+fmt(diff);
+    dEl.style.color = diff>0?"var(--blue)":diff<0?"var(--bad)":"var(--ink-2)";
+
+    t4w += wmonth;
+    t4s += smonth;
+  });
+  $("#t4-whole").textContent = fmt(t4w);
+  $("#t4-single").textContent = fmt(t4s);
+  const tDiff = t4s - t4w;
+  const tDiffEl = $("#t4-diff");
+  tDiffEl.textContent = (tDiff>=0?"+":"")+fmt(tDiff);
+
+  // T5
+  let sumA=0; $$("#t5a tbody tr").forEach(tr=> sumA += toNum($("[data-calc='amount']",tr)));
+  let sumB=0; $$("#t5b tbody tr").forEach(tr=> sumB += toNum($("[data-calc='amount']",tr)));
+  let pct=0, rev=0;
+  $$("#t5c tbody tr").forEach(tr=>{ pct += toNum($("[data-calc='pct']",tr)); rev += toNum($("[data-calc='rev']",tr)); });
+  $("#t5a-sum").textContent = fmt(sumA);
+  $("#t5b-sum").textContent = fmt(sumB);
+  $("#t5c-pct").textContent = fmt(pct)+"%";
+  $("#t5c-sum").textContent = fmt(rev);
+
+  // Dashboard
+  const oneTotal = sumA + t2one;
+  const monFixed = sumB + t2mon;
+  const grossProfit = t1sum + t4w + t4s;
+  const netProfit = grossProfit - monFixed;
+  $("#d1").textContent = fmtYuan(oneTotal);
+  $("#d2").textContent = fmtYuan(monFixed);
+  $("#d3").textContent = fmtYuan(rev);
+  $("#d4").textContent = fmtYuan(grossProfit);
+  const d5 = $("#d5");
+  d5.textContent = (netProfit>=0?"":"−")+"¥"+fmt(Math.abs(netProfit)).toLocaleString();
+  const d6 = $("#d6");
+  if(netProfit>0 && oneTotal>0){
+    const m = oneTotal / netProfit;
+    d6.textContent = fmt(m)+" 个月";
+  } else { d6.textContent = "—"; }
+
+  /* ---- v5 新增：图形 + 侧栏 + Dashboard 环形 + 保本 ---- */
+  renderNavKPI(oneTotal, monFixed, rev, grossProfit, netProfit);
+  renderCoverViz(oneTotal, monFixed, rev, grossProfit, netProfit);
+  renderT1Bars();
+  renderT4Dual();
+  renderT5cDonut();
+  renderDashDonut(monFixed, grossProfit, netProfit);
+  renderBreakEven(grossProfit, monFixed);
+  /* ---- v5.1 新增 ---- */
+  renderT5aStack();
+  renderFunnel(rev, grossProfit, netProfit, oneTotal);
+  renderWaterfall(rev, grossProfit, monFixed, netProfit, oneTotal);
+  /* ---- v5.2 新增 ---- */
+  renderOverview(rev, grossProfit, netProfit, monFixed, oneTotal);
+}
+
+/* ========== v5 渲染辅助 ========== */
+function renderNavKPI(oneTotal, monFixed, rev, gross, net){
+  const setTxt = (id,v)=>{ const el=document.getElementById(id); if(el) el.textContent=v; };
+  setTxt('nav-gross', fmtYuan(gross));
+  setTxt('nav-fixed', fmtYuan(monFixed));
+  const netEl = document.getElementById('nav-net');
+  if(netEl){
+    netEl.textContent = (net>=0?"":"−")+"¥"+fmt(Math.abs(net)).toLocaleString();
+    netEl.classList.toggle('bad', net<0);
+    netEl.classList.toggle('good', net>=0);
+  }
+  setTxt('nav-one', fmtYuan(oneTotal));
+  const pb = document.getElementById('nav-payback');
+  if(pb) pb.textContent = (net>0 && oneTotal>0) ? fmt(oneTotal/net)+" 月" : "—";
+  const bar = document.getElementById('nav-bar-fill');
+  if(bar){
+    const ratio = monFixed>0 ? Math.max(0, Math.min(1.5, gross/monFixed)) : 0;
+    bar.style.width = (Math.min(ratio,1.5)/1.5*100)+"%";
+    bar.style.background = ratio>=1 ? "linear-gradient(90deg,#1f3bff,#7b2cff)" : "linear-gradient(90deg,#d11f5a,#ff8a00)";
+  }
+}
+
+function renderCoverViz(oneTotal, monFixed, rev, gross, net){
+  const setTxt=(id,v)=>{ const el=document.getElementById(id); if(el) el.textContent=v; };
+  setTxt('cover-rev', fmtYuan(rev));
+  setTxt('cover-gross', fmtYuan(gross));
+  setTxt('cover-fixed', fmtYuan(monFixed));
+  setTxt('cover-one', fmtYuan(oneTotal));
+  setTxt('cover-net', (net>=0?"":"−")+"¥"+fmt(Math.abs(net)).toLocaleString());
+  const pb = (net>0 && oneTotal>0) ? fmt(oneTotal/net)+" 月" : "—";
+  setTxt('cover-payback', pb);
+
+  // 封面小环：固定成本 vs 净利（占毛利比）
+  const svg = document.getElementById('cover-donut');
+  if(!svg) return;
+  const total = Math.max(gross, monFixed+Math.max(net,0), 1);
+  const pFix = (monFixed/total)*100;
+  const pNet = (Math.max(net,0)/total)*100;
+  svg.innerHTML = renderDonutSVG([
+    {pct:pFix, color:"#ff6b9a"},
+    {pct:pNet, color:"#a974ff"}
+  ], "rgba(255,255,255,.1)");
+  setTxt('cover-donut-n', (net>=0?"":"−")+"¥"+fmt(Math.abs(net)).toLocaleString());
+}
+
+function renderT1Bars(){
+  const box = document.getElementById('viz-t1'); if(!box) return;
+  const rows = [];
+  $$("#t1 tbody tr").forEach(tr=>{
+    const nm = $("[data-ph='产品名称']",tr)?.textContent.trim() || $$("[contenteditable='true']",tr)[0]?.textContent.trim() || "—";
+    const profit = parseFloat(($("[data-auto='monthp']",tr)?.textContent||"0").replace(/,/g,""))||0;
+    const marginTxt = $("[data-auto='margin']",tr)?.textContent || "0%";
+    if(nm && (profit!==0 || marginTxt!=="0%")) rows.push({nm, profit, margin:marginTxt});
+  });
+  if(rows.length===0){ box.innerHTML = '<div style="color:var(--ink-3);font-size:12px;text-align:center;padding:10px 0">填入表格后这里会出现柱状图</div>'; return; }
+  const max = Math.max(1, ...rows.map(r=>Math.abs(r.profit)));
+  box.innerHTML = rows.map(r=>{
+    const w = Math.abs(r.profit)/max*100;
+    const cls = r.profit<0?'neg':'';
+    const vcls = r.profit>0?'good':r.profit<0?'bad':'';
+    return `<div class="hbar">
+      <span class="nm" title="${r.nm}">${r.nm}</span>
+      <div class="track"><div class="fill ${cls}" style="width:${w}%"></div></div>
+      <span class="val ${vcls}">${fmtYuan(r.profit)}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderT4Dual(){
+  const box = document.getElementById('viz-t4'); if(!box) return;
+  const rows = [];
+  $$("#t4 tbody tr").forEach(tr=>{
+    const nm = $$("[contenteditable='true']",tr)[0]?.textContent.trim() || "—";
+    const w = parseFloat(($("[data-auto='wmonth']",tr)?.textContent||"0").replace(/,/g,""))||0;
+    const s = parseFloat(($("[data-auto='smonth']",tr)?.textContent||"0").replace(/,/g,""))||0;
+    if(nm && (w!==0 || s!==0)) rows.push({nm, w, s});
+  });
+  const totals = { w: parseFloat(($("#t4-whole")?.textContent||"0").replace(/,/g,""))||0, s: parseFloat(($("#t4-single")?.textContent||"0").replace(/,/g,""))||0 };
+  if(rows.length===0){ box.innerHTML = '<div style="color:var(--ink-3);font-size:12px;text-align:center;padding:10px 0">填入第 04 步表格后这里会出现对比图</div>'; }
+  else {
+    const max = Math.max(1, ...rows.flatMap(r=>[Math.abs(r.w),Math.abs(r.s)]));
+    box.innerHTML = rows.map(r=>`
+      <div class="dual-row">
+        <span class="pn" title="${r.nm}">${r.nm}</span>
+        <div class="dual-group">
+          <div class="dual-line">
+            <span class="tag tag-whole">整</span>
+            <div class="tbar"><i class="whole" style="width:${Math.abs(r.w)/max*100}%"></i></div>
+            <span class="vv">${fmtYuan(r.w)}</span>
+          </div>
+          <div class="dual-line">
+            <span class="tag tag-single">散</span>
+            <div class="tbar"><i class="single" style="width:${Math.abs(r.s)/max*100}%"></i></div>
+            <span class="vv">${fmtYuan(r.s)}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  const delta = totals.s - totals.w;
+  const dEl = document.getElementById('viz-t4-delta');
+  if(dEl){
+    dEl.textContent = (delta>=0?"+":"−")+"¥"+fmt(Math.abs(delta)).toLocaleString();
+    dEl.style.color = delta>=0 ? "var(--purple)" : "var(--bad)";
+  }
+}
+
+function renderT5cDonut(){
+  const svg = document.getElementById('viz-t5c-donut'); if(!svg) return;
+  const rows = [];
+  const palette = ["#1f3bff","#7b2cff","#5b76ff","#a974ff","#ff6b9a","#ff8a00","#0b0b14","#3a3a4d"];
+  $$("#t5c tbody tr").forEach((tr,i)=>{
+    const nm = $$("[contenteditable='true']",tr)[0]?.textContent.trim() || "—";
+    const rev = toNum($("[data-calc='rev']",tr));
+    if(nm && rev>0) rows.push({nm, rev, c:palette[i%palette.length]});
+  });
+  const legend = document.getElementById('viz-t5c-legend');
+  const nEl = document.getElementById('viz-t5c-n');
+  const total = rows.reduce((s,x)=>s+x.rev, 0);
+  if(total<=0){
+    svg.innerHTML = `<circle cx="21" cy="21" r="15.9155" fill="none" stroke="#e4e6f0" stroke-width="5"/>`;
+    if(legend) legend.innerHTML = '<div style="color:var(--ink-3);font-size:12px">填入第 05.3 渠道流水后显示构成</div>';
+    if(nEl) nEl.textContent = "¥0";
+    return;
+  }
+  const segs = rows.map(r => ({pct:(r.rev/total)*100, color:r.c}));
+  svg.innerHTML = renderDonutSVG(segs, "#e4e6f0");
+  if(legend) legend.innerHTML = rows.map(r=>{
+    const pct = (r.rev/total)*100;
+    return `<div class="dl-row">
+      <span class="sw" style="background:${r.c}"></span>
+      <span class="nm">${r.nm}</span>
+      <span class="pct">${fmt(pct)}%</span>
+      <span class="vl">${fmtYuan(r.rev)}</span>
+    </div>`;
+  }).join('');
+  if(nEl) nEl.textContent = fmtYuan(total);
+}
+
+function renderDashDonut(monFixed, gross, net){
+  const svg = document.getElementById('dash-donut'); if(!svg) return;
+  const legend = document.getElementById('dash-donut-legend');
+  const nEl = document.getElementById('dash-donut-n');
+  const total = monFixed + Math.max(net, 0);
+  if(total<=0){
+    svg.innerHTML = `<circle cx="21" cy="21" r="15.9155" fill="none" stroke="#e4e6f0" stroke-width="5"/>`;
+    if(legend) legend.innerHTML = '<div style="color:var(--ink-3);font-size:12px">填入数据后显示结构</div>';
+    if(nEl) nEl.textContent = (net>=0?"":"−")+"¥"+fmt(Math.abs(net)).toLocaleString();
+    return;
+  }
+  const pFix = (monFixed/total)*100;
+  const pNet = (Math.max(net,0)/total)*100;
+  svg.innerHTML = renderDonutSVG([
+    {pct:pFix, color:"#1f3bff"},
+    {pct:pNet, color:"#7b2cff"}
+  ], "#e4e6f0");
+  if(legend) legend.innerHTML = `
+    <div class="dl-row"><span class="sw" style="background:#1f3bff"></span><span class="nm">月固定成本</span><span class="pct">${fmt(pFix)}%</span><span class="vl">${fmtYuan(monFixed)}</span></div>
+    <div class="dl-row"><span class="sw" style="background:#7b2cff"></span><span class="nm">月净利</span><span class="pct">${fmt(pNet)}%</span><span class="vl">${fmtYuan(Math.max(net,0))}</span></div>
+    ${net<0?`<div class="dl-row"><span class="sw" style="background:#d11f5a"></span><span class="nm">月亏损</span><span class="pct">—</span><span class="vl">−${fmtYuan(Math.abs(net))}</span></div>`:''}
+  `;
+  if(nEl) nEl.textContent = (net>=0?"":"−")+"¥"+fmt(Math.abs(net)).toLocaleString();
+}
+
+function renderBreakEven(gross, monFixed){
+  const fill = document.getElementById('be-fill');
+  const mark = document.getElementById('be-mark');
+  const ratioEl = document.getElementById('be-ratio');
+  const note = document.getElementById('be-note');
+  if(!fill||!mark||!ratioEl) return;
+  const ratio = monFixed>0 ? (gross/monFixed) : 0;
+  // 轴 0~200%，保本线标在 50%
+  const pct = Math.max(0, Math.min(2, ratio)) / 2 * 100;
+  fill.style.width = pct + "%";
+  fill.style.background = ratio>=1 ? "linear-gradient(90deg,#1f3bff,#7b2cff)" : "linear-gradient(90deg,#d11f5a,#ff8a00)";
+  mark.style.left = "50%";
+  ratioEl.textContent = fmt(ratio*100) + "%";
+  ratioEl.style.color = ratio>=1 ? "var(--blue)" : "var(--bad)";
+  if(note){
+    if(monFixed<=0) note.textContent = "等固定成本填好";
+    else if(ratio>=1.5) note.textContent = "✓ 毛利充裕";
+    else if(ratio>=1)   note.textContent = "✓ 已过保本";
+    else if(ratio>=0.7) note.textContent = "⚠ 接近保本";
+    else                note.textContent = "✗ 未到保本";
+    note.style.color = ratio>=1 ? "var(--blue)" : "var(--bad)";
+  }
+}
+
+/* ---- v5.1 新增：一次性投入堆叠条 ---- */
+function renderT5aStack(){
+  const box = document.getElementById('viz-t5a-stack');
+  const lg = document.getElementById('viz-t5a-legend');
+  if(!box || !lg) return;
+  const palette = ["#1f3bff","#7b2cff","#5b76ff","#a974ff","#ff6b9a","#ff8a00","#0b0b14","#3a3a4d"];
+  const rows = [];
+  $$("#t5a tbody tr").forEach((tr,i)=>{
+    const nm = $$("[contenteditable='true']",tr)[0]?.textContent.trim() || "";
+    const amt = toNum($("[data-calc='amount']",tr));
+    if(nm && amt>0) rows.push({nm, amt, c:palette[i%palette.length]});
+  });
+  // 加上 T2 一次性包装
+  const t2one = parseFloat(($("#t2-one")?.textContent||"0").replace(/,/g,""))||0;
+  if(t2one>0) rows.push({nm:"一次性包装（T2）", amt:t2one, c:"#a974ff"});
+  const total = rows.reduce((s,x)=>s+x.amt, 0);
+  if(total<=0){
+    box.innerHTML = '<div style="flex:1;display:grid;place-items:center;color:var(--ink-3);font-size:13px;font-weight:600;background:var(--paper-2)">填入一次性投入后显示结构</div>';
+    lg.innerHTML = '';
+    return;
+  }
+  box.innerHTML = rows.map(r=>{
+    const pct = (r.amt/total)*100;
+    const showTxt = pct>=8 ? `${fmt(pct)}%` : '';
+    return `<div class="stack-seg" style="flex:${r.amt};background:${r.c}" title="${r.nm}">${showTxt}<span class="tip-in">${r.nm} · ${fmtYuan(r.amt)}</span></div>`;
+  }).join('');
+  lg.innerHTML = rows.map(r=>`
+    <span class="sl"><i style="background:${r.c}"></i>${r.nm} <b>${fmtYuan(r.amt)}</b></span>
+  `).join('') + `<span class="sl" style="margin-left:auto"><i style="background:var(--ink)"></i>合计 <b>${fmtYuan(total)}</b></span>`;
+}
+
+/* ---- v5.1 新增：月度经营漏斗 ---- */
+function renderFunnel(rev, gross, net, oneTotal){
+  const box = document.getElementById('viz-funnel'); if(!box) return;
+  if(rev<=0 && gross<=0){
+    box.innerHTML = '<div style="padding:14px;color:var(--ink-3);font-size:13px;text-align:center;font-weight:600;background:var(--paper-2);border-radius:8px;width:100%">填入数据后显示经营漏斗</div>';
+    return;
+  }
+  const payback = (net>0 && oneTotal>0) ? fmt(oneTotal/net)+" 个月" : (net<=0?"—":"立即");
+  const fixed = gross - net;
+  const steps = [
+    {l:"REVENUE · 月流水", v:fmtYuan(rev), bg:"linear-gradient(90deg,#7b2cff,#a974ff)", w:100, hint:"来自渠道表", drop:""},
+    {l:"GROSS · 月毛利", v:fmtYuan(gross), bg:"linear-gradient(90deg,#1f3bff,#5b76ff)", w:rev>0?Math.max(20,Math.min(100,gross/rev*100)):90, hint:"流水 − 进货成本", drop:rev>0?`扣成本 ${fmt((1-gross/rev)*100)}%`:""},
+    {l:"FIXED-OUT · 扣固定", v:"−"+fmtYuan(Math.max(0,fixed)), bg:"linear-gradient(90deg,#ff8a00,#ff6b9a)", w:gross>0?Math.max(15,Math.min(100,Math.max(0,fixed)/gross*100)):60, hint:"房租+人工+水电", drop:gross>0?`占毛利 ${fmt(Math.max(0,fixed)/gross*100)}%`:""},
+    {l:"NET · 月净利", v:(net>=0?"":"−")+"¥"+fmt(Math.abs(net)).toLocaleString(), bg: net>=0?"linear-gradient(90deg,#1f3bff,#7b2cff)":"linear-gradient(90deg,#d11f5a,#0b0b14)", w:gross>0?Math.max(12,Math.min(100,Math.max(0,net)/gross*100)):30, hint:"月毛利 − 月固定", drop:""},
+    {l:"PAYBACK · 回本周期", v:payback, bg:"linear-gradient(90deg,#0b0b14,#3a3a4d)", w:40, hint:"一次性投入 ÷ 月净利", drop:""},
+  ];
+  box.innerHTML = steps.map(s=>`
+    <div class="funnel-step" style="background:${s.bg};width:${Math.max(45,s.w)}%">
+      <span class="fl">${s.l}</span>
+      <span class="fv">${s.v}</span>
+      <span class="fh">${s.hint}</span>
+    </div>
+    ${s.drop?`<span class="funnel-drop">▼ ${s.drop}</span>`:''}
+  `).join('');
+}
+
+/* ---- v5.1 新增：现金流瀑布图 ---- */
+function renderWaterfall(rev, gross, monFixed, net, oneTotal){
+  const grid = document.getElementById('wf-grid'); if(!grid) return;
+  const setV = (id, v, neg)=>{
+    const el = document.getElementById(id);
+    if(el){ el.textContent = v; el.classList.toggle('neg', !!neg); }
+  };
+  const setH = (id, pct, neg)=>{
+    const el = document.getElementById(id);
+    if(el){
+      el.style.height = Math.max(4, Math.min(100, pct)) + "%";
+      el.classList.toggle('neg', !!neg);
+    }
+  };
+  // 基准：以 rev 或 gross 最大者为 100%
+  const base = Math.max(rev, gross, monFixed, 1);
+  setV('wf-v1', fmtYuan(rev));
+  setH('wf-b1', rev/base*100);
+  setV('wf-v2', fmtYuan(gross));
+  setH('wf-b2', gross/base*100);
+  setV('wf-v3', "−"+fmtYuan(monFixed));
+  setH('wf-b3', monFixed/base*100);
+  setV('wf-v4', (net>=0?"":"−")+"¥"+fmt(Math.abs(net)).toLocaleString(), net<0);
+  setH('wf-b4', Math.abs(net)/base*100, net<0);
+
+  // 第 5 列：回本
+  const pbEl = document.getElementById('wf-v5');
+  const pbBar = document.getElementById('wf-b5');
+  if(net>0 && oneTotal>0){
+    const months = oneTotal/net;
+    if(pbEl) pbEl.textContent = fmt(months)+" 月";
+    // 回本越快条越高（封顶 36 月）
+    const h = Math.max(6, Math.min(100, (36-Math.min(36,months))/36*100));
+    if(pbBar){ pbBar.style.height = h+"%"; pbBar.classList.remove('neg'); }
+  } else {
+    if(pbEl){ pbEl.textContent = "—"; pbEl.classList.toggle('neg', net<=0); }
+    if(pbBar){ pbBar.style.height = "6%"; pbBar.classList.add('neg'); }
+  }
+
+  // 解读
+  const note = document.getElementById('wf-note');
+  if(note){
+    if(rev<=0 && gross<=0) {
+      note.innerHTML = '<b>💰 解读：</b>填入表格后，这里会自动显示"流水 → 毛利 → 扣固定 → 净利 → 回本"的完整链路。';
+    } else {
+      const grossRate = rev>0 ? (gross/rev*100) : 0;
+      const netRate = rev>0 ? (net/rev*100) : 0;
+      const pbTxt = (net>0 && oneTotal>0) ? `约 <b>${fmt(oneTotal/net)} 个月</b>回本` : (net<=0 ? '<b style="color:var(--bad)">当前净利 ≤ 0，无法回本</b>' : '无一次性投入');
+      note.innerHTML = `<b>💰 解读：</b>月流水 ${fmtYuan(rev)}，毛利率 <b>${fmt(grossRate)}%</b>，净利率 <b style="color:${netRate>=0?'var(--purple)':'var(--bad)'}">${fmt(netRate)}%</b>；${pbTxt}。`;
+    }
+  }
+}
+
+/* ===================== v5.2 新增：市场分析 + 数据总览 ===================== */
+
+/* —— 市场规模 TAM/SAM/SOM —— */
+function parseHumanNum(str){
+  if(str==null) return 0;
+  let s = String(str).trim().replace(/[¥,，\s]/g,'');
+  let mult = 1;
+  if(/亿$/.test(s)){ mult = 1e8; s = s.replace(/亿$/,''); }
+  else if(/万$/.test(s)){ mult = 1e4; s = s.replace(/万$/,''); }
+  else if(/千$/.test(s)){ mult = 1e3; s = s.replace(/千$/,''); }
+  if(/%$/.test(s)){ s = s.replace(/%$/,''); return (parseFloat(s)||0)/100; }
+  const n = parseFloat(s);
+  return isFinite(n) ? n*mult : 0;
+}
+function fmtBig(n){
+  if(!isFinite(n)) return "¥0";
+  const a = Math.abs(n);
+  if(a>=1e8) return "¥"+fmt(n/1e8)+" 亿";
+  if(a>=1e4) return "¥"+fmt(n/1e4)+" 万";
+  return "¥"+fmt(n).toLocaleString();
+}
+function renderMarket(){
+  const popEl = document.querySelector('[data-k="m_pop"]');
+  if(!popEl) return;
+  const pop = parseHumanNum(popEl.textContent);
+  const owner = parseHumanNum(document.querySelector('[data-k="m_owner"]')?.textContent);
+  const spend = parseHumanNum(document.querySelector('[data-k="m_spend"]')?.textContent);
+  const samPct = parseHumanNum(document.querySelector('[data-k="m_sam_pct"]')?.textContent);
+  const somPct = parseHumanNum(document.querySelector('[data-k="m_som_pct"]')?.textContent);
+  const tam = pop * owner * spend;
+  const sam = tam * samPct;
+  const som = sam * somPct;
+  const setT = (id,v)=>{ const el = document.getElementById(id); if(el) el.textContent = v; };
+  setT('m-tam', fmtBig(tam));
+  setT('m-sam', fmtBig(sam));
+  setT('m-som', fmtBig(som));
+  setT('m-tam-calc', fmtBig(tam));
+  setT('m-sam-calc', fmtBig(sam));
+  setT('m-som-calc', fmtBig(som));
+  return { tam, sam, som };
+}
+
+/* —— 竞品评分表 —— */
+function renderCompTable(){
+  const tb = document.querySelector('#t-comp tbody'); if(!tb) return [];
+  const rows = [];
+  $$('tr', tb).forEach((tr,idx)=>{
+    let sum = 0;
+    const scores = [];
+    $$('.score-bar', tr).forEach(sb=>{
+      const numEl = sb.querySelector('.score-num');
+      const fillEl = sb.querySelector('.score-fill');
+      let n = parseFloat((numEl?.textContent||'0').replace(/[^\d.\-]/g,''))||0;
+      n = Math.max(0, Math.min(10, n));
+      sum += n;
+      scores.push(n);
+      if(fillEl) fillEl.style.width = (n*10)+"%";
+    });
+    const sumEl = document.getElementById('m-c'+idx+'-sum');
+    if(sumEl) sumEl.textContent = sum;
+    const nameEl = tr.querySelector('[data-k^="m_c"][data-k$="_name"]');
+    rows.push({ idx, name:(nameEl?.textContent||'').trim()||('对手'+idx), scores, sum, isMe: tr.classList.contains('me') });
+  });
+  return rows;
+}
+
+/* —— SVG 雷达图通用 —— */
+function renderRadar(svgId, labels, series, opts){
+  const svg = document.getElementById(svgId); if(!svg) return;
+  opts = opts || {};
+  const cx = 160, cy = 150, R = 100;
+  const N = labels.length;
+  const ang = i => -Math.PI/2 + i*2*Math.PI/N;
+  const pt = (i, r) => [cx + Math.cos(ang(i))*r, cy + Math.sin(ang(i))*r];
+  let svgInner = '';
+  // 网格 5 圈
+  for(let g=1; g<=5; g++){
+    const r = R*g/5;
+    const pts = [];
+    for(let i=0;i<N;i++){ const [x,y] = pt(i,r); pts.push(`${x.toFixed(1)},${y.toFixed(1)}`); }
+    svgInner += `<polygon points="${pts.join(' ')}" fill="none" stroke="#e4e6f0" stroke-width="${g===5?1.2:.6}"/>`;
+  }
+  // 轴
+  for(let i=0;i<N;i++){
+    const [x,y] = pt(i,R);
+    svgInner += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#e4e6f0" stroke-width=".6"/>`;
+  }
+  // 数据多边形（max=10）
+  series.forEach(ser=>{
+    const pts = [];
+    ser.values.forEach((v,i)=>{
+      const r = Math.max(0, Math.min(10, v))/10*R;
+      const [x,y] = pt(i,r);
+      pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+    });
+    svgInner += `<polygon points="${pts.join(' ')}" fill="${ser.fill||'rgba(123,44,255,.22)'}" stroke="${ser.color||'#7b2cff'}" stroke-width="2" stroke-linejoin="round"/>`;
+    // 顶点小圆
+    ser.values.forEach((v,i)=>{
+      const r = Math.max(0, Math.min(10, v))/10*R;
+      const [x,y] = pt(i,r);
+      svgInner += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${ser.color||'#7b2cff'}"/>`;
+    });
+  });
+  // 标签
+  labels.forEach((lb,i)=>{
+    const [x,y] = pt(i, R+18);
+    let anchor = 'middle';
+    if(x > cx+8) anchor = 'start';
+    else if(x < cx-8) anchor = 'end';
+    svgInner += `<text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" text-anchor="${anchor}" font-size="11.5" font-weight="700" fill="#0b0b14" font-family="Inter,system-ui">${lb}</text>`;
+  });
+  svg.innerHTML = svgInner;
+}
+
+/* —— 数据总览 —— */
+function calcHealthScores(rev, gross, net, monFixed, oneTotal, marketDat, compRows){
+  // 1) 盈利能力：净利率映射 0-10。10%=5 分，30%+ = 10 分
+  const nm = rev>0 ? (net/rev*100) : 0;
+  const profit = Math.max(0, Math.min(10, nm/3 + 5*(nm>0?1:0)));
+  // 2) 现金流：保本达成率 gross/monFixed
+  const beRatio = monFixed>0 ? (gross/monFixed) : (gross>0?2:0);
+  const cash = Math.max(0, Math.min(10, beRatio*5));
+  // 3) 成本结构：毛利率
+  const gm = rev>0 ? (gross/rev*100) : 0;
+  const cost = Math.max(0, Math.min(10, gm/8));
+  // 4) 市场位置：竞品综合分 me/maxOpp
+  let mkt = 5;
+  if(compRows && compRows.length){
+    const me = compRows.find(r=>r.isMe);
+    const opps = compRows.filter(r=>!r.isMe);
+    const maxOpp = opps.length ? Math.max(...opps.map(r=>r.sum)) : 0;
+    if(me){
+      mkt = maxOpp>0 ? Math.max(0, Math.min(10, me.sum/Math.max(maxOpp, me.sum) * 10)) : Math.min(10, me.sum/3);
+    }
+  }
+  // 5) 执行准备：填了多少表（粗略以渠道+sku）
+  const skuN = $$('#t1 tbody tr').length;
+  const chN = $$('#t5c tbody tr').filter(tr=>{ const v = $('[data-calc="rev"]',tr); return v && parseFloat((v.textContent||'0').replace(/,/g,''))>0; }).length;
+  const exec = Math.max(0, Math.min(10, (skuN>0?3:0) + (chN>0?3:0) + (rev>0?2:0) + (oneTotal>0?2:0)));
+  // 6) 风险抗性：回本月数反向，越短越高；亏损=0
+  let risk = 0;
+  if(net>0 && oneTotal>0){
+    const months = oneTotal/net;
+    if(months<=6) risk = 10;
+    else if(months<=12) risk = 8;
+    else if(months<=24) risk = 6;
+    else if(months<=36) risk = 4;
+    else risk = 2;
+  } else if(net>0 && oneTotal<=0){
+    risk = 10;
+  } else {
+    risk = 0;
+  }
+  return { profit, cash, cost, mkt, exec, risk, nm, gm, beRatio, skuN, chN };
+}
+function renderOverview(rev, gross, net, monFixed, oneTotal){
+  const marketDat = renderMarket() || {};
+  const compRows = renderCompTable();
+  const sc = calcHealthScores(rev, gross, net, monFixed, oneTotal, marketDat, compRows);
+  const total = (sc.profit+sc.cash+sc.cost+sc.mkt+sc.exec+sc.risk)/6*10; // 0-100
+  const score = Math.round(total);
+  // hero
+  const setT = (id,v)=>{ const el=document.getElementById(id); if(el) el.textContent=v; };
+  setT('ov-score', score);
+  const grade = score>=85?'A+':score>=75?'A':score>=60?'B':score>=40?'C':'D';
+  const gradeColor = score>=75?'#1f3bff':score>=60?'#7b2cff':score>=40?'#ff8a00':'#d11f5a';
+  const gEl = document.getElementById('ov-grade');
+  if(gEl){ gEl.textContent = grade; gEl.style.color = gradeColor; }
+  const arc = document.getElementById('ov-gauge-arc');
+  if(arc){
+    const C = 2*Math.PI*50;
+    const dash = score/100*C;
+    arc.setAttribute('stroke-dasharray', dash.toFixed(1)+' '+(C-dash).toFixed(1));
+  }
+  // hero 文案
+  const titleEl = document.getElementById('ov-hero-title');
+  if(titleEl){
+    if(rev<=0 && gross<=0) titleEl.textContent = '填完表格，这里显示你的生意体检分';
+    else if(score>=75) titleEl.textContent = '生意结构稳健，可以放心推进';
+    else if(score>=60) titleEl.textContent = '基本盘成立，部分维度需要补强';
+    else if(score>=40) titleEl.textContent = '存在明显短板，建议先调结构再投入';
+    else titleEl.textContent = '当前模型尚未跑通，先回炉重做';
+  }
+  const subEl = document.getElementById('ov-hero-sub');
+  if(subEl){
+    subEl.textContent = `综合 ${score}/100 · 净利率 ${fmt(sc.nm)}% · 毛利率 ${fmt(sc.gm)}% · 保本率 ${fmt(sc.beRatio*100)}% · ${sc.skuN} SKU / ${sc.chN} 渠道`;
+  }
+  // 标签
+  const tagRow = document.getElementById('ov-tag-row');
+  if(tagRow){
+    const tags = [];
+    if(score>=75) tags.push({t:'HEALTHY · 整体健康', c:'ok'});
+    if(sc.nm>=15) tags.push({t:'HIGH MARGIN · 高净利率', c:'ok'});
+    if(sc.beRatio>=1.5) tags.push({t:'BREAK-EVEN OK · 已过保本', c:'ok'});
+    if(net<=0) tags.push({t:'LOSS · 当前亏损', c:'bad'});
+    if(sc.beRatio<1 && monFixed>0) tags.push({t:'UNDER BE · 未到保本', c:'bad'});
+    if(net>0 && oneTotal>0 && oneTotal/net>24) tags.push({t:'SLOW PAYBACK · 回本偏慢', c:'warn'});
+    if(sc.gm<30 && rev>0) tags.push({t:'LOW GM · 毛利率偏低', c:'warn'});
+    if(sc.chN<=1 && rev>0) tags.push({t:'SINGLE CHANNEL · 渠道单一', c:'warn'});
+    if(tags.length===0) tags.push({t:'READY TO START · 待开工', c:''});
+    tagRow.innerHTML = tags.map(x=>`<span class="tg ${x.c}">${x.t}</span>`).join('');
+  }
+  // KPI 矩阵
+  setT('ov-k-rev', fmtYuan(rev));
+  setT('ov-k-gross', fmtYuan(gross));
+  setT('ov-k-net', (net>=0?'':'−')+'¥'+fmt(Math.abs(net)).toLocaleString());
+  setT('ov-k-gm', fmt(sc.gm)+'%');
+  setT('ov-k-nm', fmt(sc.nm)+'%');
+  setT('ov-k-be', fmt(sc.beRatio*100)+'%');
+  setT('ov-k-pb', (net>0&&oneTotal>0)?fmt(oneTotal/net)+' 月':'—');
+  const roi = oneTotal>0 ? (net*12/oneTotal*100) : 0;
+  setT('ov-k-roi', fmt(roi)+'%');
+  setT('ov-k-capex', fmtYuan(oneTotal));
+  setT('ov-k-opex', fmtYuan(monFixed));
+  setT('ov-k-ch', sc.chN);
+  setT('ov-k-sku', sc.skuN);
+  // 排名
+  let rankTxt = '—';
+  if(compRows && compRows.length){
+    const sorted = [...compRows].sort((a,b)=>b.sum-a.sum);
+    const meIdx = sorted.findIndex(r=>r.isMe);
+    if(meIdx>=0) rankTxt = `第 ${meIdx+1} / ${compRows.length}`;
+  }
+  setT('ov-k-rank', rankTxt);
+  // delta 文案 + 颜色
+  const setD = (id, txt, cls)=>{
+    const el = document.getElementById(id); if(!el) return;
+    el.textContent = txt;
+    el.className = 'delta ' + (cls||'');
+  };
+  setD('ov-k-rev-d', rev>0?'实时同步':'待填写', rev>0?'ok':'pur');
+  setD('ov-k-gross-d', gross>=0?'流水−进货':'—', gross>0?'ok':'bad');
+  setD('ov-k-net-d', net>=0?'已扣固定':'亏损', net>=0?'ok':'bad');
+  setD('ov-k-gm-d', sc.gm>=50?'优秀':sc.gm>=30?'达标':rev>0?'偏低':'—', sc.gm>=30?'ok':rev>0?'warn':'pur');
+  setD('ov-k-nm-d', sc.nm>=15?'优秀':sc.nm>=5?'达标':rev>0?'偏低':'—', sc.nm>=15?'ok':sc.nm>=5?'pur':rev>0?'bad':'pur');
+  setD('ov-k-be-d', sc.beRatio>=1.5?'毛利充裕':sc.beRatio>=1?'已过保本':monFixed>0?'未到保本':'—', sc.beRatio>=1?'ok':monFixed>0?'bad':'pur');
+  setD('ov-k-pb-d', (net>0&&oneTotal>0)?(oneTotal/net<=12?'≤1 年':oneTotal/net<=24?'1-2 年':'偏慢'):'—', (net>0&&oneTotal>0)?(oneTotal/net<=12?'ok':oneTotal/net<=24?'pur':'warn'):'pur');
+  setD('ov-k-roi-d', roi>=50?'优秀':roi>=20?'达标':roi>0?'偏低':'—', roi>=20?'ok':roi>0?'pur':'bad');
+  setD('ov-k-capex-d', oneTotal>0?'含装修+包装':'待填写', 'pur');
+  setD('ov-k-opex-d', monFixed>0?'每月雷打不动':'待填写', 'warn');
+  setD('ov-k-ch-d', sc.chN>=3?'多元':sc.chN>=2?'达标':sc.chN===1?'单一·风险':'—', sc.chN>=2?'ok':sc.chN===1?'warn':'pur');
+  setD('ov-k-sku-d', sc.skuN+' 项 SKU', sc.skuN>=3?'ok':'pur');
+  setD('ov-k-rank-d', rankTxt!=='—'?'按综合分':'—', rankTxt.startsWith('第 1')?'ok':'pur');
+  // 雷达
+  renderRadar('ov-radar',
+    ['盈利','现金流','成本','市场','执行','风险'],
+    [{ values:[sc.profit, sc.cash, sc.cost, sc.mkt, sc.exec, sc.risk], color:'#7b2cff', fill:'rgba(123,44,255,.22)' }]
+  );
+  const avgEl = document.getElementById('ov-radar-avg');
+  if(avgEl){
+    const avg = (sc.profit+sc.cash+sc.cost+sc.mkt+sc.exec+sc.risk)/6;
+    avgEl.textContent = 'AVG '+fmt(avg);
+  }
+  // 对手雷达 3 维度
+  if(compRows && compRows.length){
+    const labels = ['产品力','服务力','流量力'];
+    const palette = ['#1f3bff','#ff6b9a','#ff8a00','#0b0b14'];
+    const series = [];
+    const me = compRows.find(r=>r.isMe);
+    if(me){
+      series.push({ values: me.scores, color:'#7b2cff', fill:'rgba(123,44,255,.28)' });
+    }
+    compRows.filter(r=>!r.isMe).slice(0,3).forEach((r,i)=>{
+      series.push({ values:r.scores, color:palette[i%palette.length], fill:'rgba('+(i===0?'31,59,255':i===1?'255,107,154':'255,138,0')+',.10)' });
+    });
+    renderRadar('ov-comp-radar', labels, series);
+    const meEl = document.getElementById('ov-comp-me');
+    if(meEl) meEl.textContent = 'ME '+(me?me.sum:0)+' / 30';
+    const lg = document.getElementById('ov-comp-legend');
+    if(lg){
+      const items = [];
+      if(me) items.push(`<span><i style="background:#7b2cff"></i>${me.name} (${me.sum})</span>`);
+      compRows.filter(r=>!r.isMe).slice(0,3).forEach((r,i)=>{
+        items.push(`<span><i style="background:${palette[i%palette.length]}"></i>${r.name} (${r.sum})</span>`);
+      });
+      lg.innerHTML = items.join('');
+    }
+  }
+  // 智能诊断
+  renderDiag(rev, gross, net, monFixed, oneTotal, sc, compRows);
+}
+
+function renderDiag(rev, gross, net, monFixed, oneTotal, sc, compRows){
+  const list = document.getElementById('ov-diag-list'); if(!list) return;
+  const items = [];
+  const push = (cls,tg,txt)=>items.push({cls,tg,txt});
+  if(rev<=0 && gross<=0){
+    push('info','WAITING','填入前面表格后，这里会自动生成诊断意见。');
+  } else {
+    // 净利
+    if(net>0) push('ok','PROFIT','✓ 月净利 '+fmtYuan(net)+'，已脱离亏损区。');
+    else push('bad','LOSS','✗ 当前月净利 '+fmtYuan(net)+'，必须先把毛利或流水提上去。');
+    // 保本
+    if(monFixed>0){
+      if(sc.beRatio>=1.5) push('ok','BE OK','✓ 毛利是月固定成本的 '+fmt(sc.beRatio)+' 倍，安全边际充足。');
+      else if(sc.beRatio>=1) push('ok','BE','✓ 已过保本（'+fmt(sc.beRatio*100)+'%），但缓冲不大，建议拉到 1.5 倍以上。');
+      else push('bad','BE FAIL','✗ 毛利仅覆盖固定成本的 '+fmt(sc.beRatio*100)+'%，未到保本线。');
+    }
+    // 毛利率
+    if(rev>0){
+      if(sc.gm<30) push('warn','LOW GM','⚠ 毛利率仅 '+fmt(sc.gm)+'%，低于零售常规 30%-50%，检查进货价或定价。');
+      else if(sc.gm>=50) push('ok','HIGH GM','✓ 毛利率 '+fmt(sc.gm)+'%，定价空间健康。');
+    }
+    // 净利率
+    if(rev>0 && sc.nm<5 && net>0) push('warn','THIN NM','⚠ 净利率 '+fmt(sc.nm)+'% 偏薄，抗波动能力弱，一次促销可能就由盈转亏。');
+    // 回本
+    if(net>0 && oneTotal>0){
+      const months = oneTotal/net;
+      if(months<=6) push('ok','FAST PB','✓ 回本周期约 '+fmt(months)+' 个月，资金周转极快。');
+      else if(months<=12) push('ok','PB OK','✓ 回本周期约 '+fmt(months)+' 个月，1 年内可回本。');
+      else if(months<=24) push('warn','SLOW PB','⚠ 回本周期 '+fmt(months)+' 个月，处于 1-2 年区间，注意现金流。');
+      else push('bad','VERY SLOW','✗ 回本周期 '+fmt(months)+' 个月（>2 年），重投资模式风险大。');
+    } else if(oneTotal>0 && net<=0){
+      push('bad','NO PB','✗ 当前净利 ≤ 0，一次性投入 '+fmtYuan(oneTotal)+' 暂时无法回本。');
+    }
+    // 渠道
+    if(sc.chN===1 && rev>0) push('warn','SINGLE CH','⚠ 收入只来自 1 个渠道，建议至少做到 2-3 个，分散风险。');
+    else if(sc.chN>=3) push('ok','MULTI CH','✓ '+sc.chN+' 个收入渠道，结构健康。');
+    // SKU
+    if(sc.skuN===1 && rev>0) push('warn','SINGLE SKU','⚠ 在售 1 个 SKU，单品依赖度高，建议拓展到 3-5 个。');
+    // 竞品
+    if(compRows && compRows.length){
+      const me = compRows.find(r=>r.isMe);
+      const opps = compRows.filter(r=>!r.isMe);
+      if(me && opps.length){
+        const maxOpp = Math.max(...opps.map(r=>r.sum));
+        const minOpp = Math.min(...opps.map(r=>r.sum));
+        if(me.sum>=maxOpp) push('ok','LEADER','✓ 竞品综合分 '+me.sum+'，领先所有对手。');
+        else if(me.sum>=minOpp) push('warn','MID','⚠ 竞品综合分 '+me.sum+'，处于中段，需要至少在一条线上做到第一。');
+        else push('bad','BEHIND','✗ 竞品综合分 '+me.sum+'，全维度落后，需要重新定位。');
+        // 短板
+        if(me.scores && me.scores.length===3){
+          const labels = ['产品力','服务力','流量力'];
+          const minIdx = me.scores.indexOf(Math.min(...me.scores));
+          if(me.scores[minIdx]<=4) push('warn','WEAK','⚠ 你最弱的一环是「'+labels[minIdx]+'」（'+me.scores[minIdx]+'/10），下季度优先补这块。');
+        }
+      }
+    }
+    // 综合
+    if(items.length<=2) push('info','NOTE','基础数据正常，继续完善市场分析与目标设定。');
+  }
+  list.innerHTML = items.map(it=>`
+    <li class="${it.cls}">
+      <span class="ic">${it.cls==='ok'?'✓':it.cls==='warn'?'!':it.cls==='bad'?'✗':'i'}</span>
+      <span>${it.txt}</span>
+      <span class="tg">${it.tg}</span>
+    </li>
+  `).join('');
+  const sumEl = document.getElementById('ov-diag-sum');
+  if(sumEl){
+    const ok = items.filter(i=>i.cls==='ok').length;
+    const warn = items.filter(i=>i.cls==='warn').length;
+    const bad = items.filter(i=>i.cls==='bad').length;
+    sumEl.textContent = `${items.length} 项 · ✓${ok} ⚠${warn} ✗${bad}`;
+  }
+}
+
+/* SVG 环形图：返回多段 stroke-dasharray 圆 */
+function renderDonutSVG(segs, trackColor){
+  const R = 15.9155, CX = 21, CY = 21, W = 5;
+  let svg = `<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="${trackColor}" stroke-width="${W}"/>`;
+  let offset = 25;
+  segs.forEach(s=>{
+    if(s.pct<=0) return;
+    const pct = Math.max(0.5, s.pct); // 避免太小看不见
+    svg += `<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="${s.color}" stroke-width="${W}" stroke-dasharray="${pct} ${100-pct}" stroke-dashoffset="${offset}" style="transition:stroke-dasharray .4s,stroke-dashoffset .4s"/>`;
+    offset = offset - s.pct;
+  });
+  return svg;
+}
+
+/* 导航：跳转 + 高亮 */
+function bindSideNav(){
+  const nav = document.getElementById('sidenav'); if(!nav) return;
+  const links = $$('a[data-jump]', nav);
+  links.forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const id = a.dataset.jump;
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  // 滚动高亮
+  const pageIds = links.map(a=>a.dataset.jump);
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        links.forEach(a=>a.classList.toggle('active', a.dataset.jump===en.target.id));
+      }
+    });
+  }, { rootMargin: "-40% 0px -50% 0px", threshold:0 });
+  pageIds.forEach(id=>{ const el=document.getElementById(id); if(el) obs.observe(el); });
+}
+
+
+function attachListeners(root=document){
+  $$("[contenteditable='true']",root).forEach(el=>{
+    if(el.dataset.bound) return; el.dataset.bound="1";
+    el.addEventListener("input", recalcAll);
+    el.addEventListener("blur", ()=>saveLocal());
+  });
+  $$("input,select",root).forEach(el=>{
+    if(el.dataset.bound) return; el.dataset.bound="1";
+    el.addEventListener("change", ()=>{recalcAll();saveLocal();});
+  });
+}
+
+/* ========== 本地存储 ========== */
+const LS_KEY = "biz_plan_v4";
+function collect(){
+  const data = { rows:{}, kv:{}, t2types:[] };
+  ["t1","t2","t4","t5a","t5b","t5c"].forEach(id=>{
+    data.rows[id] = $$(`#${id} tbody tr`).map(tr => $$("[contenteditable='true']",tr).map(el => el.textContent.trim()));
+  });
+  data.t2types = $$("#t2 tbody tr").map(tr => $(".pkg-type",tr)?.value || "one");
+  $$("[data-k]").forEach(el=>{
+    const k = el.dataset.k;
+    if(el.tagName==="INPUT"){ if(el.type==="radio"){ if(el.checked) data.kv[k]=el.value; } else data.kv[k]=el.value; }
+    else data.kv[k] = el.textContent.trim();
+  });
+  return data;
+}
+function saveLocal(showTip){ try{ localStorage.setItem(LS_KEY, JSON.stringify(collect())); if(showTip) flash("已保存 ✅"); }catch(e){} }
+function loadLocal(){
+  let data=null; try{ data = JSON.parse(localStorage.getItem(LS_KEY)||"null"); }catch(e){}
+  if(!data){ alert("本地还没有保存过内容"); return; }
+  apply(data); flash("已读取 ✅");
+}
+function apply(data){
+  ["t1","t2","t4","t5a","t5b","t5c"].forEach(id=>{
+    $(`#${id} tbody`).innerHTML = "";
+    (data.rows[id]||[]).forEach((r,i) => addRow(id, r, id==="t2"?(data.t2types?.[i]||"one"):undefined));
+  });
+  $$("[data-k]").forEach(el=>{
+    const k = el.dataset.k; const v = data.kv?.[k]; if(v==null) return;
+    if(el.tagName==="INPUT"){ if(el.type==="radio"){ el.checked=(el.value===v); } else el.value=v; }
+    else el.textContent = v;
+  });
+  recalcAll();
+}
+function clearAll(){
+  if(!confirm("确定清空所有内容？此操作不可恢复。")) return;
+  localStorage.removeItem(LS_KEY); location.reload();
+}
+function flash(msg){
+  const d = document.createElement("div");
+  d.textContent = msg;
+  d.style.cssText = "position:fixed;top:24px;left:50%;transform:translateX(-50%);background:var(--gradient);color:#fff;padding:12px 22px;border-radius:999px;font-size:13px;z-index:9999;box-shadow:0 12px 30px rgba(123,44,255,.4);opacity:0;transition:.25s;font-weight:700;letter-spacing:1px";
+  document.body.appendChild(d);
+  requestAnimationFrame(()=>{ d.style.opacity="1"; d.style.top="72px"; });
+  setTimeout(()=>{ d.style.opacity="0"; setTimeout(()=>d.remove(),300); },1500);
+}
+
+/* ========== 初始化 ========== */
+/* ========== 全局通用可编辑：把所有静态文字容器升级为 contenteditable ========== */
+function enableUniversalEditing(){
+  /* 选中所有"含纯文字"的展示型节点；排除已编辑、控件、脚本、SVG 内部、按钮等 */
+  const SEL = "h1,h2,h3,h4,h5,h6,p,li,figcaption,blockquote,dt,dd,summary,td,th,caption,label,a";
+  const SKIP_TAG = new Set(["SCRIPT","STYLE","INPUT","SELECT","OPTION","TEXTAREA","BUTTON","SVG","CIRCLE","RECT","PATH","LINE","POLYGON","POLYLINE","TEXT","TSPAN","G","DEFS","CLIPPATH","USE","IMG","VIDEO","AUDIO","CANVAS"]);
+  const SKIP_CLASS_RE = /\b(btn|chip-btn|toolbar|side-nav|sidenav|nav-kpis|nav-kpi|nav-bar|kpi-title|kpi-card|kpi|metric|lbl|val|step|page-num|num|score-bar|score-fill|donut|gauge|radar|svg|chart|hero-gauge|tag|badge|badge-mini|brand|dot|topbar|logo|icon|legend|axis|ov-|ov-kpi|ov-diag|ov-radar|ov-hero|ov-tag|hero|live-kpi)\b/i;
+  let n = 0;
+  document.querySelectorAll(SEL).forEach(el=>{
+    /* 已是 editable 跳过 */
+    if(el.getAttribute("contenteditable")==="true") return;
+    /* 父链有 SVG / contenteditable 跳过 */
+    if(el.closest("svg")) return;
+    if(el.closest("[contenteditable='true']")) return;
+    /* 跳过自身或父 tag 在黑名单 */
+    if(SKIP_TAG.has(el.tagName)) return;
+    /* 必须含可见文字（不只是空白和数字占位） */
+    const txt = (el.textContent||"").trim();
+    if(!txt) return;
+    /* 不要把"只含子元素"的容器变 editable，否则破坏内部结构 */
+    /* 规则：直接子节点中至少有一个文本节点带非空字符 */
+    let hasOwnText=false;
+    for(const ch of el.childNodes){
+      if(ch.nodeType===3 && ch.nodeValue.trim()){ hasOwnText=true; break; }
+    }
+    if(!hasOwnText) return;
+    /* 跳过样式类黑名单（按钮、徽章、SVG 容器、侧边浮卡 KPI 等） */
+    if(SKIP_CLASS_RE.test(el.className||"")) return;
+    /* 父链黑名单：处于 side-nav / nav-kpis / topbar / hero / ov-hero / kpi-card 等容器内的所有节点都不升级 */
+    if(el.closest(".side-nav,.sidenav,.nav-kpis,.nav-kpi,.topbar,.hero,.ov-hero,.kpi-card,.ov-kpi,.ov-diag,.ov-radar,.gauge-wrap,.hero-gauge,.donut,.radar,.score-bar")) return;
+    /* 一些 ID 前缀对应的"被 JS 实时渲染覆盖"的节点，跳过 */
+    const id = el.id||"";
+    if(/^(ov-|m-|sum|p-|kpi|gauge|grade|badge)/i.test(id) && el.dataset.k==null) {
+      /* 这些是 JS 渲染目标；它们的内容会被覆盖，编辑无意义 */
+      return;
+    }
+    el.setAttribute("contenteditable","true");
+    el.setAttribute("spellcheck","false");
+    if(!el.dataset.k){
+      n++;
+      el.dataset.k = "txt-"+n.toString(36).padStart(3,"0");
+    }
+  });
+  /* 行内强调 / 文本片段（span / strong / em / b / i / u / small）若为独立短句，也允许编辑 */
+  document.querySelectorAll("span,strong,em,b,i,u,small,mark").forEach(el=>{
+    if(el.getAttribute("contenteditable")==="true") return;
+    if(el.closest("svg")) return;
+    if(el.closest("[contenteditable='true']")) return;
+    if(el.closest(".side-nav,.sidenav,.nav-kpis,.nav-kpi,.topbar,.hero,.ov-hero,.kpi-card,.ov-kpi,.ov-diag,.ov-radar,.gauge-wrap,.hero-gauge,.donut,.radar,.score-bar")) return;
+    if(SKIP_CLASS_RE.test(el.className||"")) return;
+    if(/^(ov-|m-|sum|p-|kpi|gauge|grade|badge)/i.test(el.id||"")) return;
+    /* 必须是叶子且有文字 */
+    if(el.children.length>0) return;
+    const txt = (el.textContent||"").trim();
+    if(!txt) return;
+    el.setAttribute("contenteditable","true");
+    el.setAttribute("spellcheck","false");
+    if(!el.dataset.k){
+      n++;
+      el.dataset.k = "txt-i"+n.toString(36).padStart(3,"0");
+    }
+  });
+  return n;
+}
+
+function init(){
+  let data=null; try{ data = JSON.parse(localStorage.getItem(LS_KEY)||"null"); }catch(e){}
+  if(data){ apply(data); }
+  else {
+    Object.entries(DEFAULTS).forEach(([id,rows])=>{
+      rows.forEach((r,i)=>addRow(id, r, id==="t2"?(T2_DEFAULT_TYPES[i]||"one"):undefined));
+    });
+  }
+  /* 升级为通用可编辑（必须在 attachListeners 之前，这样新节点也会被绑定） */
+  enableUniversalEditing();
+  /* 再次 apply 一次，让新挂上的 data-k 节点把上次保存的文字读回来 */
+  if(data){
+    $$("[data-k]").forEach(el=>{
+      const k = el.dataset.k; const v = data.kv?.[k]; if(v==null) return;
+      if(el.tagName==="INPUT" || el.tagName==="SELECT" || el.tagName==="TEXTAREA"){ return; }
+      el.textContent = v;
+    });
+  }
+  attachListeners();
+  recalcAll();
+  bindSideNav();
+}
+init();
+</script>
+
+<!-- ============ JSONBin 云端同步模块（轻量协作） ============ -->
+<script>
+/* ========================================================================
+   配置 —— JSONBin 云端同步
+   ------------------------------------------------------------------------
+   工作方式：
+   - 启动时读取云端 bin 里的数据，如果比本地新就覆盖本地
+   - 用户改动 → 600ms 防抖 → 推送到云端
+   - 每 3 秒轮询一次云端，发现有更新就拉下来合并
+   - 用 updated_at + updater 做冲突提示（最后改的赢）
+   - 用昵称区分"谁在看"，无需登录 OAuth
+   ======================================================================== */
+const JSONBIN_KEY = "$2a$10$vTmFRmkFCvEPj2GD8IjaJeTupc4kH41RshCtBStP1TaIi1Rj3WdOe";
+/* BIN_ID —— 首次启动时会自动创建一个 bin 并把 id 存在 localStorage
+   所有人共用同一个 BIN_ID 才能看到同一份数据。
+   第一个人创建完后，把页面控制台打印的 BIN_ID 硬编码到下面常量里，分发给团队。 */
+const HARDCODED_BIN_ID = "69fca5e5c0954111d8ee3040";  // 团队共享 bin
+const POLL_INTERVAL = 3000;             // 轮询 3 秒
+const PUSH_DEBOUNCE = 600;              // 本地改动后 600ms 推送
+
+const notConfigured = !JSONBIN_KEY || JSONBIN_KEY.startsWith("__");
+
+const bar = document.getElementById("collab-bar");
+const statusEl = document.getElementById("collab-status");
+const whoEl = document.getElementById("collab-who");
+const avatarsEl = document.getElementById("collab-avatars");
+const loginBtn = document.getElementById("collab-login-btn");
+const logoutBtn = document.getElementById("collab-logout-btn");
+
+/* 登录按钮改名为"改昵称"，登出按钮隐藏 */
+if(loginBtn){ loginBtn.textContent = "改昵称"; }
+if(logoutBtn){ logoutBtn.style.display = "none"; }
+
+if(notConfigured){
+  bar.classList.remove("hidden");
+  statusEl.innerHTML = '<span class="dot-off"></span>LOCAL ONLY';
+  whoEl.textContent = "未配置云同步（仅本地保存）";
+  console.info("[collab] JSONBin 未配置，走 LocalStorage 单机模式");
+} else {
+  bar.classList.remove("hidden");
+  bootCollab();
+}
+
+async function bootCollab(){
+  /* ---------- 昵称（首次弹框） ---------- */
+  function getMyName(){
+    let n = localStorage.getItem("__collab_nickname");
+    if(!n){
+      n = prompt("给自己起个昵称（显示给协作者看）：", "") || "";
+      n = n.trim();
+      if(!n){ n = "访客" + Math.floor(Math.random()*1000); }
+      localStorage.setItem("__collab_nickname", n);
+    }
+    return n;
+  }
+  let me = { name: getMyName(), id: (localStorage.getItem("__collab_id") || (()=>{ const id = "u-"+Math.random().toString(36).slice(2,8); localStorage.setItem("__collab_id", id); return id; })()) };
+
+  function renderStatus(state, text){
+    const cls = {online:"dot-live", syncing:"dot-syncing", offline:"dot-off"}[state] || "dot-off";
+    const label = {online:"LIVE", syncing:"SYNCING", offline:"OFFLINE"}[state] || "OFFLINE";
+    statusEl.innerHTML = `<span class="${cls}"></span>${text || label}`;
+  }
+  function renderMe(){
+    whoEl.textContent = me.name;
+  }
+  renderMe();
+
+  loginBtn.onclick = ()=>{
+    const n = prompt("修改昵称：", me.name);
+    if(n && n.trim()){
+      me.name = n.trim();
+      localStorage.setItem("__collab_nickname", me.name);
+      renderMe();
+      // 刷新一下 presence 列表
+      pushPresence();
+    }
+  };
+
+  /* ---------- 初始化 BIN：如果 HARDCODED_BIN_ID 已设置就用它，否则看 LS，否则创建 ---------- */
+  const API = "https://api.jsonbin.io/v3/b";
+  const HEADERS = { "Content-Type":"application/json", "X-Master-Key": JSONBIN_KEY };
+
+  async function ensureBin(){
+    if(HARDCODED_BIN_ID && !HARDCODED_BIN_ID.startsWith("__")) return HARDCODED_BIN_ID;
+    let id = localStorage.getItem("__collab_bin_id");
+    if(id) return id;
+    // 首次创建
+    renderStatus("syncing","创建云端 bin...");
+    const res = await fetch(API, {
+      method:"POST",
+      headers: { ...HEADERS, "X-Bin-Name":"codm-plan", "X-Bin-Private":"true" },
+      body: JSON.stringify({ data:{}, presence:[], updated_at: Date.now(), updater: me.name })
+    });
+    if(!res.ok){ throw new Error("创建 bin 失败："+res.status); }
+    const j = await res.json();
+    id = j.metadata?.id;
+    localStorage.setItem("__collab_bin_id", id);
+    console.log("%c[协作] 已创建 BIN_ID = "+id, "color:#ff0;background:#222;padding:4px 8px;font-weight:bold");
+    alert("首次使用，已创建云端存储。\n请打开浏览器控制台（F12），复制 BIN_ID 分发给团队，\n或把它硬编码到 plan.html 的 HARDCODED_BIN_ID 里。\n\nBIN_ID: "+id);
+    return id;
+  }
+
+  let BIN_ID = null;
+  let lastRemoteUpdatedAt = 0;
+  let suppressSave = false;
+  let lastLocalEditAt = {};
+  let lastPushAt = 0;
+
+  try {
+    BIN_ID = await ensureBin();
+  } catch(e){
+    console.error(e);
+    renderStatus("offline","初始化失败");
+    return;
+  }
+
+  /* ---------- 读远端 ---------- */
+  async function readRemote(){
+    const res = await fetch(`${API}/${BIN_ID}/latest`, { headers: HEADERS });
+    if(!res.ok) throw new Error("读取失败："+res.status);
+    const j = await res.json();
+    return j.record || {};
+  }
+  /* ---------- 写远端（整个 record 替换） ---------- */
+  async function writeRemote(payload){
+    const res = await fetch(`${API}/${BIN_ID}`, {
+      method:"PUT",
+      headers: HEADERS,
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error("写入失败："+res.status);
+    return res.json();
+  }
+
+  /* ---------- 初次加载 ---------- */
+  renderStatus("syncing","加载中...");
+  let record;
+  try { record = await readRemote(); }
+  catch(e){ console.error(e); renderStatus("offline","加载失败"); return; }
+
+  let localData = null;
+  try { localData = JSON.parse(localStorage.getItem(LS_KEY) || "null"); } catch(e){}
+  const remoteData = record.data || {};
+  const remoteHasContent = Object.keys(remoteData).length > 0 && (remoteData.kv || remoteData.rows);
+
+  if(remoteHasContent){
+    suppressSave = true;
+    apply(remoteData);
+    suppressSave = false;
+    if(typeof flash === "function") flash("已从云端加载 ☁");
+    lastRemoteUpdatedAt = record.updated_at || Date.now();
+  } else if(localData){
+    // 远端空 → 推本地
+    await pushNow(localData);
+  }
+  renderStatus("online","LIVE");
+
+  /* ---------- Presence（轻量）：record.presence 是数组，自己写入自己的心跳 ---------- */
+  async function pushPresence(){
+    try {
+      const cur = await readRemote();
+      const list = (cur.presence || []).filter(p => p.id !== me.id && (Date.now() - (p.t||0) < 15000));
+      list.push({ id: me.id, name: me.name, t: Date.now() });
+      await writeRemote({ ...cur, presence: list });
+      renderPresence(list);
+    } catch(e){ /* 静默 */ }
+  }
+  function renderPresence(users){
+    avatarsEl.innerHTML = "";
+    users.slice(0,5).forEach(u=>{
+      const chip = document.createElement("div");
+      chip.style.cssText = "width:26px;height:26px;border-radius:50%;background:#7b2cff;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid var(--paper);margin-left:-8px;";
+      chip.textContent = (u.name||"?").slice(0,2).toUpperCase();
+      chip.title = u.name + (u.id===me.id ? "（你）" : "");
+      if(u.id===me.id) chip.style.background = "var(--accent)";
+      chip.style.color = u.id===me.id ? "#000" : "#fff";
+      avatarsEl.appendChild(chip);
+    });
+  }
+  pushPresence();
+  setInterval(pushPresence, 10000);
+
+  /* ---------- 轮询远端变更 ---------- */
+  setInterval(async ()=>{
+    try {
+      const cur = await readRemote();
+      const rt = cur.updated_at || 0;
+      if(rt > lastRemoteUpdatedAt && Date.now() - lastPushAt > 1500){
+        lastRemoteUpdatedAt = rt;
+        applyRemote(cur);
+      }
+      // presence 渲染（顺带刷新）
+      const list = (cur.presence || []).filter(p => Date.now() - (p.t||0) < 15000);
+      renderPresence(list);
+    } catch(e){ /* 静默 */ }
+  }, POLL_INTERVAL);
+
+  function applyRemote(remote){
+    const remoteData = remote.data || {};
+    const now = Date.now();
+    const d = collect();
+    const merged = JSON.parse(JSON.stringify(remoteData));
+    if(merged.kv && d.kv){
+      Object.keys(d.kv).forEach(k => {
+        if(lastLocalEditAt[k] && now - lastLocalEditAt[k] < 1500){
+          merged.kv[k] = d.kv[k];
+        }
+      });
+    }
+    suppressSave = true;
+    apply(merged);
+    suppressSave = false;
+    const tip = (remote.updater || "某人") + " 更新了";
+    statusEl.innerHTML = `<span class="dot-syncing"></span>${tip}`;
+    clearTimeout(window.__statusResetT);
+    window.__statusResetT = setTimeout(()=>renderStatus("online","LIVE"), 1800);
+  }
+
+  /* ---------- 本地编辑 → 推送 ---------- */
+  let pushTimer = null;
+  function schedulePush(){
+    clearTimeout(pushTimer);
+    renderStatus("syncing","SAVING...");
+    pushTimer = setTimeout(async ()=>{
+      await pushNow(collect());
+    }, PUSH_DEBOUNCE);
+  }
+  async function pushNow(data){
+    lastPushAt = Date.now();
+    try {
+      const cur = await readRemote();
+      const payload = {
+        ...cur,
+        data,
+        updated_at: lastPushAt,
+        updater: me.name
+      };
+      await writeRemote(payload);
+      lastRemoteUpdatedAt = lastPushAt;
+      renderStatus("online","LIVE");
+    } catch(e){
+      console.error(e);
+      renderStatus("offline","保存失败");
+    }
+  }
+
+  document.body.addEventListener("input", (e)=>{
+    if(suppressSave) return;
+    const el = e.target;
+    const k = el.dataset?.k;
+    if(k) lastLocalEditAt[k] = Date.now();
+    schedulePush();
+  }, true);
+  document.body.addEventListener("change", (e)=>{
+    if(suppressSave) return;
+    schedulePush();
+  }, true);
+  const obs = new MutationObserver(()=>{
+    if(suppressSave) return;
+    schedulePush();
+  });
+  ["t1","t2","t4","t5a","t5b","t5c"].forEach(id=>{
+    const tb = document.querySelector(`#${id} tbody`);
+    if(tb) obs.observe(tb, { childList:true });
+  });
+}
+</script>
+</body>
+</html>
